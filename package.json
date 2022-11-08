@@ -1,0 +1,86 @@
+{
+	"name": "mini-shop",
+	"version": "0.1.0",
+	"private": true,
+	"browserslist": {
+		"production": [
+			">0.2%",
+			"not dead",
+			"not op_mini all"
+		],
+		"development": [
+			"last 1 chrome version",
+			"last 1 firefox version",
+			"last 1 safari version"
+		]
+	},
+	"scripts": {
+		"start": "react-app-rewired start",
+		"build": "react-app-rewired build",
+		"eject": "react-app-rewired eject",
+		"prepare": "husky install",
+		"lint": "eslint --fix \"src/**/*.{js,jsx}\"",
+		"pretty": "prettier --write \"src/**/*.{js,jsx}\""
+	},
+	"dependencies": {
+		"@emotion/react": "^11.10.0",
+		"@emotion/styled": "^11.10.0",
+		"@mui/icons-material": "^5.8.4",
+		"@mui/lab": "^5.0.0-alpha.103",
+		"@mui/material": "^5.10.1",
+		"@mui/styles": "^5.10.2",
+		"@reduxjs/toolkit": "^1.8.5",
+		"axios": "^0.27.2",
+		"clsx": "^1.2.1",
+		"ms": "^2.1.3",
+		"notistack": "^2.0.5",
+		"prop-types": "^15.8.1",
+		"query-string": "^7.1.1",
+		"react": "^18.2.0",
+		"react-dom": "^18.2.0",
+		"react-fast-marquee": "^1.3.5",
+		"react-hook-form": "^7.36.1",
+		"react-material-ui-carousel": "^3.4.2",
+		"react-redux": "^8.0.2",
+		"react-router-dom": "^6.3.0",
+		"react-scripts": "5.0.1",
+		"redux-persist": "^6.0.0",
+		"swiper": "^8.4.4",
+		"yup": "^0.32.11"
+	},
+	"devDependencies": {
+		"babel-plugin-module-resolver": "^4.1.0",
+		"customize-cra": "^1.0.0",
+		"eslint": "^8.21.0",
+		"eslint-config-airbnb": "^19.0.4",
+		"eslint-config-prettier": "^8.5.0",
+		"eslint-config-react-app": "^7.0.1",
+		"eslint-plugin-import": "^2.26.0",
+		"eslint-plugin-jsx-a11y": "^6.6.1",
+		"eslint-plugin-prettier": "^4.2.1",
+		"eslint-plugin-react": "^7.30.1",
+		"eslint-plugin-react-hooks": "^4.6.0",
+		"husky": "^8.0.1",
+		"lint-staged": "^13.0.3",
+		"prettier": "^2.7.1",
+		"prettier-eslint": "^15.0.1",
+		"prettier-plugin-organize-imports": "^3.0.0",
+		"react-app-rewired": "^2.2.1"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"src/**/*.{js,jsx}": [
+			"yarn pretty",
+			"yarn lint"
+		]
+	},
+	"engines": {
+		"node": ">= v16.16.0",
+		"npm": "please-use-yarn",
+		"yarn": ">= 1.22.18"
+	}
+}
