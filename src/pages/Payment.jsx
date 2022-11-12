@@ -218,6 +218,8 @@ const Payment = () => {
 	};
 
 	const totalAmout = subTotal - priceSale + shipPrice;
+	const priceSavings = priceSale === 'Freeship' ? 0 : priceSale;
+	const priceDelivery = priceSale === 'Freeship' ? 0 : shipPrice;
 
 	useEffect(() => {
 		if (successOrder) {
@@ -243,7 +245,9 @@ const Payment = () => {
 			zip: addressListChecked.map(item => item.zip).toString(),
 			country: addressListChecked.map(item => item.country).toString(),
 			phone: addressListChecked.map(item => item.phone).toString(),
-			totalPrice: totalAmout || subTotal,
+			priceDelivery,
+			priceSavings,
+			totalPrice: totalAmout,
 			userId: user._id
 		};
 		handleAddOrder(data);
@@ -747,7 +751,8 @@ const Payment = () => {
 									}}
 								>
 									<Select
-										defaultValue=""
+										disabled
+										defaultValue={0}
 										value={priceSale}
 										onChange={handleChange}
 										displayEmpty
@@ -813,9 +818,11 @@ const Payment = () => {
 											color: '#0f8fac'
 										}}
 									>
-										{priceSale === 'Freeship'
-											? 0
-											: `- ${Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(priceSale)}`}
+										-
+										{Intl.NumberFormat('en-US', {
+											style: 'currency',
+											currency: 'USD'
+										}).format(priceSavings)}
 									</Box>
 								</MyListItem>
 								{/* <MyListItem>
@@ -857,9 +864,10 @@ const Payment = () => {
 											color: '#767676'
 										}}
 									>
-										{priceSale === 'Freeship'
-											? 0
-											: Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(shipPrice)}
+										{Intl.NumberFormat('en-US', {
+											style: 'currency',
+											currency: 'USD'
+										}).format(priceDelivery)}
 									</Box>
 								</MyListItem>
 								<MyListItem>

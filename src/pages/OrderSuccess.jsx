@@ -467,7 +467,7 @@ const OrderSuccess = () => {
 											</Box>
 										</Box>
 										<Link
-											to={Route.HomePage}
+											to={Route.UserDashboardPage}
 											style={{
 												color: '#ff5353',
 												fontWeight: 500,

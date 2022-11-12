@@ -2,7 +2,7 @@ import { createSelector } from '@reduxjs/toolkit';
 
 const selectOrder = state => state.order;
 
-const selectOrderList = createSelector(selectOrder, order => order.orders);
+const selectOrderList = createSelector(selectOrder, order => order.orderList);
 
 const selectOneOrder = createSelector(selectOrder, order => order.order);
 

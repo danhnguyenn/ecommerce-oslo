@@ -50,14 +50,14 @@ const SpecialProduct = () => {
 				</Grid>
 				<Grid item xs={12} md={3} xl={2}>
 					<Grid container spacing={2}>
-						<Grid item xs={6}>
+						<Grid item xs={6} lg={12}>
 							<CardOverplay
 								imageUrl="https://themes.pixelstrap.com/oslo/assets/images/fashion/category/5.jpg"
 								name="Best Collection"
 								title="Woman Bag"
 							/>
 						</Grid>
-						<Grid item xs={6}>
+						<Grid item xs={6} lg={12}>
 							<CardOverplay
 								imageUrl="https://themes.pixelstrap.com/oslo/assets/images/fashion/category/6.jpg"
 								name="New Style"

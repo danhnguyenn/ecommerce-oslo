@@ -105,7 +105,12 @@ const Header = () => {
 				sx={{
 					background: ' linear-gradient(90deg, #262834 6.15%, #20222f 50%)',
 					padding: '7px',
-					display: { xs: 'none', md: 'none', lg: 'block' }
+					display: {
+						xs: 'none',
+						sm: 'none',
+						md: 'block',
+						lg: 'block'
+					}
 				}}
 			>
 				<Container>
@@ -163,7 +168,12 @@ const Header = () => {
 								color: '#000',
 								gap: '10px',
 								textTransform: 'uppercase',
-								display: { xs: 'none', md: 'none', lg: 'inline-flex' }
+								display: {
+									xs: 'none',
+									sm: 'none',
+									md: 'inline-flex',
+									lg: 'inline-flex'
+								}
 							}}
 						>
 							<ListItem disablePadding>
@@ -188,9 +198,11 @@ const Header = () => {
 								</MyNavLink>
 							</ListItem>
 							<ListItem disablePadding>
-								<ListItemButton component="a" href="#simple-list">
-									<ListItemText primary="Blog" />
-								</ListItemButton>
+								<MyNavLink to={Route.BlogPage}>
+									<ListItemButton>
+										<ListItemText primary="Blog" />
+									</ListItemButton>
+								</MyNavLink>
 							</ListItem>
 							<ListItem disablePadding>
 								<ListItemButton component="a" href="#simple-list">
@@ -198,7 +210,16 @@ const Header = () => {
 								</ListItemButton>
 							</ListItem>
 						</List>
-						<Box sx={{ display: { xs: 'none', md: 'none', lg: 'flex' } }}>
+						<Box
+							sx={{
+								display: {
+									xs: 'none',
+									sm: 'none',
+									md: 'flex',
+									lg: 'flex'
+								}
+							}}
+						>
 							<Button
 								id="basic-button"
 								onClick={handleClick}
@@ -316,18 +337,22 @@ const Header = () => {
 										Logout
 									</MenuItem>
 								</Menu>
-								<MyNavLink to={Route.MyLikeProductPage}>
-									<Tooltip title="Wishlist">
-										<IconButton>
-											<Badge
-												badgeContent={location.pathname === '/wishlist' ? 0 : totalQuantityWishList()}
-												color="primary"
-											>
-												<FavoriteBorderIcon sx={{ color: '#262834' }} />
-											</Badge>
-										</IconButton>
-									</Tooltip>
-								</MyNavLink>
+								{user ? (
+									<MyNavLink to={Route.MyLikeProductPage}>
+										<Tooltip title="Wishlist">
+											<IconButton>
+												<Badge
+													badgeContent={location.pathname === '/wishlist' ? 0 : totalQuantityWishList()}
+													color="primary"
+												>
+													<FavoriteBorderIcon sx={{ color: '#262834' }} />
+												</Badge>
+											</IconButton>
+										</Tooltip>
+									</MyNavLink>
+								) : (
+									''
+								)}
 
 								<MyNavLink to={Route.CartPage}>
 									<Tooltip title="Cart">
@@ -345,13 +370,49 @@ const Header = () => {
 							sx={{
 								display: {
 									xs: 'block',
-									md: 'block',
+									sm: 'block',
+									md: 'none',
 									lg: 'none'
 								}
 							}}
 						>
 							<MenuIcon />
 						</Button>
+						{user ? (
+							<Tooltip title="Login">
+								<IconButton
+									id="basic-button"
+									onClick={handleMenuClick}
+									sx={{
+										display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' },
+										fontSize: '14px',
+										lineHeight: '20px',
+										color: '#262834',
+										fontWeight: 'normal',
+										textTransform: 'none'
+									}}
+								>
+									<PersonIcon />
+								</IconButton>
+							</Tooltip>
+						) : (
+							<Link to={Route.LoginPage}>
+								<IconButton
+									id="basic-button"
+									onClick={handleMenuClick}
+									sx={{
+										display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' },
+										fontSize: '14px',
+										lineHeight: '20px',
+										color: '#262834',
+										fontWeight: 'normal',
+										textTransform: 'none'
+									}}
+								>
+									<PersonIcon />
+								</IconButton>
+							</Link>
+						)}
 						<Drawer
 							open={openDrawer}
 							onClose={() => setOpenDrawer(false)}

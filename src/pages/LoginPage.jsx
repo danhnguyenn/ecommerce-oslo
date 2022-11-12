@@ -3,7 +3,7 @@ import Route from '$constants/Route';
 import useAuth from '$hooks/useAuth';
 import { yupResolver } from '@hookform/resolvers/yup';
 import EastIcon from '@mui/icons-material/East';
-import { Backdrop, Box, Button, CardMedia, CircularProgress, Grid, styled, Typography } from '@mui/material';
+import { Backdrop, Box, Button, CardMedia, CircularProgress, Container, Grid, styled, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import * as yup from 'yup';
@@ -71,172 +71,184 @@ const LoginPage = () => {
 	};
 
 	return (
-		<Grid container>
+		<Grid
+			container
+			sx={{
+				flexDirection: {
+					xs: 'column-reverse',
+					sm: 'column-reverse',
+					md: 'row',
+					lg: 'row'
+				}
+			}}
+		>
 			<Grid item xs={12} md={5}>
-				<Box
-					sx={{
-						padding: '20px calc(20px + (200 - 20) * ((100vw - 991px) / (1920 - 991)))',
-						width: '100%',
-						height: '100%',
-						margin: '0 auto'
-					}}
-				>
-					<Typography
-						variant="h5"
+				<Container>
+					<Box
 						sx={{
-							textAlign: 'left',
-							fontWeight: '600',
-							fontSize: 'calc(12px + (30 - 12) * ((100vw - 320px) / (1920 - 320)))',
-							lineHeight: 'calc(17px + (43 - 17) * ((100vw - 320px) / (1920 - 320)))',
-							position: 'relative',
-							textTransform: 'uppercase',
-							cursor: 'pointer',
-							zIndex: 2,
-							':hover': {
-								'& span': {
-									height: '100%'
-								}
-							}
+							padding: '20px calc(20px + (200 - 20) * ((100vw - 991px) / (1920 - 991)))',
+							width: '100%',
+							height: '100%',
+							margin: '0 auto'
 						}}
 					>
-						Login
+						<Typography
+							variant="h5"
+							sx={{
+								textAlign: 'left',
+								fontWeight: '600',
+								fontSize: 'calc(12px + (30 - 12) * ((100vw - 320px) / (1920 - 320)))',
+								lineHeight: 'calc(17px + (43 - 17) * ((100vw - 320px) / (1920 - 320)))',
+								position: 'relative',
+								textTransform: 'uppercase',
+								cursor: 'pointer',
+								zIndex: 2,
+								':hover': {
+									'& span': {
+										height: '100%'
+									}
+								}
+							}}
+						>
+							Login
+							<Typography
+								component="span"
+								sx={{
+									height: 'calc(10px + (25 - 10) * ((100vw - 320px) / (1920 - 320)))',
+									display: 'block',
+									left: 0,
+									right: 0,
+									zIndex: '-1',
+									bottom: '0px',
+									position: 'absolute',
+									backgroundColor: 'rgba(15,143,172,0.1)',
+									width: '20%'
+								}}
+							>
+								{null}
+							</Typography>
+						</Typography>
+						<Typography
+							variant="subtitle1"
+							sx={{
+								marginTop: '5px',
+								marginBottom: '25px',
+								color: ' #767676',
+								fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))'
+							}}
+						>
+							How do i get access order,wishlist and recomendation?
+						</Typography>
+						<Box component="form" onSubmit={handleSubmit(onSubmit)}>
+							<InputField control={control} label="Email" name="email" />
+							<InputField control={control} label="Password" name="password" type="password" />
+							<MyTextLink to="">Forgot password</MyTextLink>
+							<MyButtonCustom type="submit">
+								Sign in <EastIcon />
+							</MyButtonCustom>
+							<MyTextLink to={Route.HomePage}>
+								<MyButtonCustom
+									sx={{
+										backgroundColor: '#fff',
+										border: '1px solid #0f8fac',
+										color: '#0f8fac',
+										marginTop: '1rem',
+										'&:hover': {
+											backgroundColor: '#0f8fac',
+											color: '#fff'
+										}
+									}}
+								>
+									Home <EastIcon />
+								</MyButtonCustom>
+							</MyTextLink>
+						</Box>
 						<Typography
 							component="span"
 							sx={{
-								height: 'calc(10px + (25 - 10) * ((100vw - 320px) / (1920 - 320)))',
 								display: 'block',
-								left: 0,
-								right: 0,
-								zIndex: '-1',
-								bottom: '0px',
-								position: 'absolute',
-								backgroundColor: 'rgba(15,143,172,0.1)',
-								width: '20%'
+								marginTop: '20px',
+								textAlign: ' center'
 							}}
 						>
-							{null}
-						</Typography>
-					</Typography>
-					<Typography
-						variant="subtitle1"
-						sx={{
-							marginTop: '5px',
-							marginBottom: '25px',
-							color: ' #767676',
-							fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))'
-						}}
-					>
-						How do i get access order,wishlist and recomendation?
-					</Typography>
-					<Box component="form" onSubmit={handleSubmit(onSubmit)}>
-						<InputField control={control} label="Email" name="email" />
-						<InputField control={control} label="Password" name="password" type="password" />
-						<MyTextLink to="">Forgot password</MyTextLink>
-						<MyButtonCustom type="submit">
-							Sign in <EastIcon />
-						</MyButtonCustom>
-						<MyTextLink to={Route.HomePage}>
-							<MyButtonCustom
+							If you are new,{' '}
+							<MyTextLink
+								to={Route.RegisterPage}
 								sx={{
-									backgroundColor: '#fff',
-									border: '1px solid #0f8fac',
+									display: 'inline-block',
 									color: '#0f8fac',
-									marginTop: '1rem',
+									fontWeight: 600,
 									'&:hover': {
-										backgroundColor: '#0f8fac',
-										color: '#fff'
+										textDecoration: 'underline'
 									}
 								}}
 							>
-								Home <EastIcon />
-							</MyButtonCustom>
-						</MyTextLink>
-					</Box>
-					<Typography
-						component="span"
-						sx={{
-							display: 'block',
-							marginTop: '20px',
-							textAlign: ' center'
-						}}
-					>
-						If you are new,{' '}
-						<MyTextLink
-							to={Route.RegisterPage}
+								Create Now
+							</MyTextLink>
+						</Typography>
+						<Typography
+							component="div"
 							sx={{
-								display: 'inline-block',
-								color: '#0f8fac',
-								fontWeight: 600,
-								'&:hover': {
-									textDecoration: 'underline'
+								width: '100%',
+								position: 'relative',
+								marginTop: '30px',
+								marginBottom: '30px',
+								textAlign: 'center',
+								'&:after': {
+									content: '""',
+									height: '1px',
+									backgroundColor: '#ddd',
+									width: '100%',
+									position: 'absolute',
+									inset: 0,
+									zIndex: 1,
+									top: '50%',
+									transform: ' translateY(-50%)'
 								}
 							}}
 						>
-							Create Now
-						</MyTextLink>
-					</Typography>
-					<Typography
-						component="div"
-						sx={{
-							width: '100%',
-							position: 'relative',
-							marginTop: '30px',
-							marginBottom: '30px',
-							textAlign: 'center',
-							'&:after': {
-								content: '""',
-								height: '1px',
-								backgroundColor: '#ddd',
-								width: '100%',
-								position: 'absolute',
-								inset: 0,
-								zIndex: 1,
-								top: '50%',
-								transform: ' translateY(-50%)'
-							}
-						}}
-					>
-						<Typography
-							component="span"
-							sx={{
-								padding: '0 6px',
-								backgroundColor: '#fff',
-								color: '#767676',
-								position: 'relative',
-								zIndex: 2
-							}}
-						>
-							Or
+							<Typography
+								component="span"
+								sx={{
+									padding: '0 6px',
+									backgroundColor: '#fff',
+									color: '#767676',
+									position: 'relative',
+									zIndex: 2
+								}}
+							>
+								Or
+							</Typography>
 						</Typography>
-					</Typography>
-					<MyButtonAuth>
-						<CardMedia
-							component="img"
-							image="https://themes.pixelstrap.com/oslo/assets/icons/png/google.png"
-							alt="Background Login"
-							sx={{
-								width: '18px',
-								height: '18px'
-							}}
-						/>
-						Sign in
-					</MyButtonAuth>
-					<MyButtonAuth>
-						<CardMedia
-							component="img"
-							image="https://themes.pixelstrap.com/oslo/assets/icons/png/fb.png"
-							alt="Background Login"
-							sx={{
-								width: '18px',
-								height: '18px'
-							}}
-						/>
-						Sign in
-					</MyButtonAuth>
-					<Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={isLoading}>
-						<CircularProgress color="inherit" />
-					</Backdrop>
-				</Box>
+						<MyButtonAuth>
+							<CardMedia
+								component="img"
+								image="https://themes.pixelstrap.com/oslo/assets/icons/png/google.png"
+								alt="Background Login"
+								sx={{
+									width: '18px',
+									height: '18px'
+								}}
+							/>
+							Sign in
+						</MyButtonAuth>
+						<MyButtonAuth>
+							<CardMedia
+								component="img"
+								image="https://themes.pixelstrap.com/oslo/assets/icons/png/fb.png"
+								alt="Background Login"
+								sx={{
+									width: '18px',
+									height: '18px'
+								}}
+							/>
+							Sign in
+						</MyButtonAuth>
+						<Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={isLoading}>
+							<CircularProgress color="inherit" />
+						</Backdrop>
+					</Box>
+				</Container>
 			</Grid>
 			<Grid item xs={12} md={7}>
 				<CardMedia
@@ -247,7 +259,7 @@ const LoginPage = () => {
 						backgroundSize: 'cover',
 						backgroundPosition: 'center',
 						backgroundRepeat: 'no-repeat',
-						height: '100vh'
+						height: { xs: '50vh', lg: '100vh' }
 					}}
 				/>
 			</Grid>

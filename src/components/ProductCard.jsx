@@ -10,7 +10,6 @@ import StarIcon from '@mui/icons-material/Star';
 import StorefrontIcon from '@mui/icons-material/Storefront';
 import { Box, CardMedia, IconButton, keyframes, styled, Tooltip, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
-import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 const BoxSlide = keyframes`
@@ -46,28 +45,14 @@ const NewBadge = styled('span')(({ theme }) => ({
 }));
 
 const ProductCard = ({ product }) => {
-	const { warning, error } = useNotify();
+	const { warning } = useNotify();
 	const { user } = useAuth();
-	const { likeList, fetchWishList, handleAddWishList } = useWishList();
+	const { handleCheckLiked } = useWishList();
 	const { handleAddToCart } = useCart();
 	const navigate = useNavigate();
 
 	const handleCheckLogin = () => {
 		warning('Please login to like the product');
-	};
-
-	useEffect(() => {
-		fetchWishList(user._id);
-	}, []);
-
-	const handleCheckLiked = data => {
-		const newState = [...likeList];
-		const index = newState.findIndex(item => item._id === data.productId);
-		if (index >= 0) {
-			error('Already loved');
-		} else {
-			handleAddWishList(data);
-		}
 	};
 
 	return (

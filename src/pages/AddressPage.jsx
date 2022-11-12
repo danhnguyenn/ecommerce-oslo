@@ -52,7 +52,6 @@ const BootstrapDialog = styled(Dialog)(({ theme }) => ({
 const MyButtonCustom = styled(Button)(({ theme }) => ({
 	width: '100%',
 	padding: '10px 20px',
-
 	color: '#fff',
 	backgroundColor: theme.palette.primary.light,
 	fontWeight: 500,
@@ -87,6 +86,7 @@ const MyParagraph = styled(Typography)(({ theme }) => ({
 	lineHeight: '18px',
 	textAlign: 'left'
 }));
+
 const MySpan = styled(Box)(({ theme }) => ({
 	marginTop: '15px',
 	display: 'flex',
@@ -94,6 +94,7 @@ const MySpan = styled(Box)(({ theme }) => ({
 	fontSize: '14px',
 	color: '#767676'
 }));
+
 const TitleColor = styled(Box)(({ theme }) => ({
 	fontSize: '14px',
 	color: '#262834',

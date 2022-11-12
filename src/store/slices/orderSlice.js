@@ -4,7 +4,7 @@ import { persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 
 const initialState = {
-	orders: [],
+	orderList: [],
 	isLoading: false,
 	success: false,
 	order: {}
@@ -18,9 +18,9 @@ const addOrder = createAsyncThunk('orders/updateOrder', async (params, { rejectW
 	}
 });
 
-const fetchOrder = createAsyncThunk('products/fetchProduct', async (userId, { rejectWithValue, getState }) => {
+const fetchOrder = createAsyncThunk('orders/fetchOrders', async (userId, { rejectWithValue, getState }) => {
 	try {
-		return await orderService.getAllOrder(userId);
+		return await orderService.getUserOrderDetail(userId);
 	} catch (error) {
 		return rejectWithValue(error);
 	}
@@ -36,7 +36,7 @@ const orderSlice = createSlice({
 	},
 	extraReducers: {
 		[fetchOrder.fulfilled]: (state, { payload }) => {
-			state.orders = payload;
+			state.orderList = payload.order;
 		},
 		[fetchOrder.rejected]: state => {
 			state.isLoading = false;
@@ -60,7 +60,7 @@ const orderSlice = createSlice({
 
 export const orderActions = orderSlice.actions;
 
-export const orderAsyncActions = { addOrder };
+export const orderAsyncActions = { addOrder, fetchOrder };
 
 const persistConfig = {
 	keyPrefix: 'ecommerce',

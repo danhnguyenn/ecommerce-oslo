@@ -171,9 +171,18 @@ const Slide = () => {
 							xs: '5px'
 						},
 						fontSize: {
-							xs: '12px'
+							xs: '12px',
+							sm: '12px',
+							md: 'calc(12px + (16 - 12) * ((100vw - 320px) / (1920 - 320)))',
+							lg: 'calc(12px + (16 - 12) * ((100vw - 320px) / (1920 - 320)))'
 						},
-						padding: { xs: '4px 12px' },
+						padding: {
+							xs: '4px 12px',
+							sm: '4px 12px',
+							md: 'calc(4px + (12 - 4) * ((100vw - 320px) / (1920 - 320))) calc(20px + (50 - 20) * ((100vw - 320px) / (1920 - 320)))',
+							lg: 'calc(4px + (12 - 4) * ((100vw - 320px) / (1920 - 320))) calc(20px + (50 - 20) * ((100vw - 320px) / (1920 - 320)))'
+						},
+
 						gap: { xs: '5px' }
 					}}
 				>

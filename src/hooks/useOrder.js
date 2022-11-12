@@ -9,7 +9,7 @@ const useOrder = () => {
 
 	const { success, error } = useNotify();
 
-	const orders = useSelector(orderSelector.selectOrderList);
+	const orderList = useSelector(orderSelector.selectOrderList);
 
 	const order = useSelector(orderSelector.selectOneOrder);
 
@@ -29,9 +29,20 @@ const useOrder = () => {
 		dispatch(orderActions.resetOrder());
 	};
 
+	const fetchOrderDetail = async userId => {
+		try {
+			const actionResult = await dispatch(orderAsyncActions.fetchOrder(userId));
+			const { message } = await unwrapResult(actionResult);
+			success(message);
+		} catch ({ message }) {
+			error(message);
+		}
+	};
+
 	return {
 		order,
-		orders,
+		orderList,
+		fetchOrderDetail,
 		handleAddOrder,
 		handleResetOrder,
 		successOrder

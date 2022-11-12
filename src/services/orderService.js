@@ -1,8 +1,8 @@
 import axiosClient from './axiosClient';
 
 const orderService = {
-	getAllOrder: userId => {
-		const url = `/orders/userorders/${userId}`;
+	getUserOrderDetail: userId => {
+		const url = `/orders/${userId}`;
 		return axiosClient.get(url);
 	},
 	addOrder: data => {

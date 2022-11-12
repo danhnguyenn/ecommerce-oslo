@@ -46,7 +46,7 @@ const wishListSlice = createSlice({
 		}
 	},
 	extraReducers: {
-		[addWishList.fulfilled]: state => {
+		[addWishList.fulfilled]: (state, payload) => {
 			state.isLiked = true;
 			state.isLoading = false;
 		},

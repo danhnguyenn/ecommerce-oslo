@@ -52,7 +52,18 @@ const useWishList = () => {
 		return amount;
 	};
 
+	const handleCheckLiked = data => {
+		const newState = [...likeList];
+		const index = newState.findIndex(item => item._id === data.productId);
+		if (index >= 0) {
+			error('Already loved');
+		} else {
+			handleAddWishList(data);
+		}
+	};
+
 	return {
+		handleCheckLiked,
 		totalQuantityWishList,
 		handleAddWishList,
 		handleDeleteProductWithUser,

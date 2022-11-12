@@ -1,6 +1,7 @@
 import Route from '$constants/Route';
 import AboutPage from '$pages/AboutPage';
 import AddressPage from '$pages/AddressPage';
+import BlogPage from '$pages/BlogPage';
 import CartPage from '$pages/CartPage';
 import HomePage from '$pages/HomePage';
 import LoginPage from '$pages/LoginPage';
@@ -12,7 +13,7 @@ import ProductDetailPage from '$pages/ProductDetailPage';
 import ProductPage from '$pages/ProductPage';
 import RegisterPage from '$pages/RegisterPage';
 import SearchProductPage from '$pages/SearchProductPage';
-import UserDashBoard from '$pages/UserDashBoard';
+import UserDashBoard from '$pages/UserDashBoardPage';
 
 const routes = [
 	{
@@ -66,6 +67,10 @@ const routes = [
 	{
 		path: Route.PaymentPage,
 		element: <Payment />
+	},
+	{
+		path: Route.BlogPage,
+		element: <BlogPage />
 	},
 	{
 		path: Route.NotFoundPage,
