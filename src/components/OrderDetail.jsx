@@ -71,31 +71,59 @@ const OrderDetail = ({ order }) => {
 						}}
 					/>
 				</Box>
-				<Box>
-					<Typography
-						variant="h5"
-						sx={{
-							fontSize: 'calc(15px + (16 - 15) * ((100vw - 320px) / (1920 - 320)))',
-							color: '#262834',
-							fontWeight: 500,
-							marginBottom: '2px'
-						}}
-					>
-						Order Delivered
-					</Typography>
-					<Typography
-						variant="subtitle1"
-						sx={{
-							marginBottom: 0,
-							color: '#767676',
-							fontSize: '14px',
-							lineHeight: '20px',
-							fontWeight: 400
-						}}
-					>
-						Delivered On {dateFormatted}
-					</Typography>
-				</Box>
+				{order.status === 'Pending' ? (
+					<Box>
+						<Typography
+							variant="h5"
+							sx={{
+								fontSize: 'calc(15px + (16 - 15) * ((100vw - 320px) / (1920 - 320)))',
+								color: '#262834',
+								fontWeight: 500,
+								marginBottom: '2px'
+							}}
+						>
+							Pending
+						</Typography>
+						<Typography
+							variant="subtitle1"
+							sx={{
+								marginBottom: 0,
+								color: '#767676',
+								fontSize: '14px',
+								lineHeight: '20px',
+								fontWeight: 400
+							}}
+						>
+							Delivered On {dateFormatted}
+						</Typography>
+					</Box>
+				) : (
+					<Box>
+						<Typography
+							variant="h5"
+							sx={{
+								fontSize: 'calc(15px + (16 - 15) * ((100vw - 320px) / (1920 - 320)))',
+								color: '#262834',
+								fontWeight: 500,
+								marginBottom: '2px'
+							}}
+						>
+							Order Delivered
+						</Typography>
+						<Typography
+							variant="subtitle1"
+							sx={{
+								marginBottom: 0,
+								color: '#767676',
+								fontSize: '14px',
+								lineHeight: '20px',
+								fontWeight: 400
+							}}
+						>
+							Delivered On {dateFormatted}
+						</Typography>
+					</Box>
+				)}
 			</Box>
 			{orderItems.map(item => (
 				<ProductOrder key={item._id} product={item} order={order} />

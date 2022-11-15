@@ -14,9 +14,11 @@ import PortraitIcon from '@mui/icons-material/Portrait';
 import SearchIcon from '@mui/icons-material/Search';
 import {
 	AppBar,
+	Backdrop,
 	Badge,
 	Box,
 	Button,
+	CircularProgress,
 	Container,
 	Drawer,
 	IconButton,
@@ -75,7 +77,7 @@ const totalQuantityWishList = likeList => {
 };
 
 const Header = () => {
-	const { user, handleLogout } = useAuth();
+	const { user, handleLogout, isLoading } = useAuth();
 	const { totalQuantityCart } = useCart();
 	const { likeList } = useWishList();
 	const [anchorEl, setAnchorEl] = useState(null);
@@ -520,6 +522,9 @@ const Header = () => {
 								</MyItemMenuMobile>
 							</List>
 						</Drawer>
+						<Backdrop sx={{ color: '#fff', zIndex: theme => theme.zIndex.drawer + 1 }} open={isLoading}>
+							<CircularProgress color="inherit" />
+						</Backdrop>
 					</Toolbar>
 				</Container>
 			</AppBar>
