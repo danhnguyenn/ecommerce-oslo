@@ -66,6 +66,7 @@ const MyItemMenuMobile = styled(ListItem)(({ theme }) => ({
 }));
 
 const totalQuantityWishList = likeList => {
+	if (!likeList) return;
 	let amount = 0;
 	for (let i = 0; i < likeList.length; i++) {
 		amount += 1;
