@@ -1,13 +1,17 @@
 import useFilter from '$hooks/useFilter';
 import { Box, CardMedia, styled, Typography } from '@mui/material';
+import clsx from 'clsx';
 import PropTypes from 'prop-types';
+import { useState } from 'react';
+import '../assets/css/custom.css';
 
 const MyBox = styled(Box)(({ theme }) => ({
 	padding: '20px',
-	boxShadow: '0px 0px 5px rgb(0 0 0 / 10%)',
+	// boxShadow: '0px 0px 5px rgb(0 0 0 / 10%)',
 	position: 'relative',
 	overflow: 'hidden',
 	backgroundColor: '#fff',
+	border: 'solid #f2f2f2 1px',
 	':hover': {
 		backgroundColor: theme.palette.primary.light,
 		cursor: 'pointer',
@@ -34,9 +38,20 @@ const MyBox = styled(Box)(({ theme }) => ({
 
 const Category = ({ category }) => {
 	const { handleFilterCategory } = useFilter();
+	const [isActive, setIsActive] = useState(null);
+
+	const handleFilter = category => {
+		handleFilterCategory(category._id);
+		setIsActive(category.name);
+	};
 
 	return (
-		<MyBox onClick={() => handleFilterCategory(category._id)}>
+		<MyBox
+			onClick={() => handleFilter(category)}
+			className={clsx({
+				active: isActive === category.name
+			})}
+		>
 			<CardMedia
 				component="img"
 				image={`${category.imageUrl}`}

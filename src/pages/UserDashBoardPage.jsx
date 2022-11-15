@@ -13,6 +13,7 @@ import BorderColorIcon from '@mui/icons-material/BorderColor';
 import CloseIcon from '@mui/icons-material/Close';
 import DeleteIcon from '@mui/icons-material/Delete';
 import EastIcon from '@mui/icons-material/East';
+import SettingsIcon from '@mui/icons-material/Settings';
 import {
 	Badge,
 	Box,
@@ -22,6 +23,7 @@ import {
 	Dialog,
 	DialogContent,
 	DialogTitle,
+	Drawer,
 	FormControl,
 	FormControlLabel,
 	Grid,
@@ -245,6 +247,11 @@ const UserDashboardPage = () => {
 	const [value, setValue] = useState(1);
 	const [selected, setSelected] = useState('');
 	const [open, setOpen] = useState(false);
+	const [openDrawer, setOpenDrawer] = useState(false);
+
+	const toggleDrawer = () => {
+		setOpenDrawer(preState => ({ openDrawer: !preState.openDrawer }));
+	};
 
 	const handleChange = (event, newValue) => {
 		setValue(newValue);
@@ -297,6 +304,120 @@ const UserDashboardPage = () => {
 	return (
 		<>
 			<MyBreadcrumbs breadcrumb={breadcrumb} />
+
+			<Drawer
+				open={openDrawer}
+				onClose={() => setOpenDrawer(false)}
+				PaperProps={{
+					sx: {
+						width: '80%',
+						backgroundColor: '#f7f7f7',
+						border: 'none'
+					}
+				}}
+			>
+				<Button
+					onClick={() => setOpenDrawer(false)}
+					sx={{
+						display: 'flex',
+						justifyContent: 'flex-end',
+						color: '#0f8fac'
+					}}
+				>
+					<CloseIcon />
+				</Button>
+				<Tabs
+					orientation="vertical"
+					variant="scrollable"
+					value={value}
+					onChange={handleChange}
+					aria-label="Vertical tabs example"
+					sx={{
+						borderColor: 'divider',
+						padding: 'calc(15px + (20 - 15) * ((100vw - 320px) / (1920 - 320)))',
+						backgroundColor: '#f7f7f7',
+						borderRadius: '5px',
+						'.MuiTabs-indicator': {
+							display: 'none'
+						},
+						'& .Mui-selected': {
+							backgroundColor: '#0f8fac',
+							color: '#fff !important',
+							opacity: '0.8',
+							borderColor: '#dee2e6 #dee2e6 #fff',
+							inset: 0
+						}
+					}}
+				>
+					<Box
+						sx={{
+							display: 'flex',
+							alignItems: 'center',
+							gap: 'calc(10px + (15 - 10) * ((100vw - 320px) / (1920 - 320)))',
+							paddingBottom: '15px',
+							borderBottom: '1px solid #ddd',
+							marginBottom: '20px',
+							flexDirection: 'column'
+						}}
+					>
+						<CardMedia
+							component="img"
+							image="https://themes.pixelstrap.com/oslo/assets/images/avatar/avatar.jpg"
+							alt="Avatar"
+							sx={{
+								position: 'relative',
+								display: 'inline-block',
+								width: 'calc(50px + (70 - 50) * ((100vw - 320px) / (1920 - 320)))',
+								height: 'auto',
+								borderRadius: '100%',
+								overflow: 'hidden'
+							}}
+						/>
+						<Box>
+							<Typography
+								variant="h5"
+								sx={{
+									textAlign: 'center',
+									fontWeight: 500,
+									color: '#262834',
+									fontSize: '16px',
+									lineHeight: '20px',
+									marginBottom: '3px'
+								}}
+							>
+								{user.fullName}
+							</Typography>
+							<Typography
+								variant="h6"
+								sx={{
+									textAlign: 'center',
+									lineHeight: '20px',
+									fontWeight: 'normal',
+									color: '#767676',
+									fontSize: '14px'
+								}}
+							>
+								{user.email}
+							</Typography>
+						</Box>
+					</Box>
+					<TabLabel label="Dashboard" {...a11yProps(1)} />
+					<TabLabel label="Orders" {...a11yProps(2)} />
+					<Link
+						to={Route.MyLikeProductPage}
+						style={{
+							textDecoration: 'none',
+							color: '#000'
+						}}
+					>
+						<TabLabel label="Wishlist" {...a11yProps(3)} />
+					</Link>
+					<TabLabel label="Saved Address" {...a11yProps(4)} />
+					<TabLabel label="Saved Card " {...a11yProps(5)} />
+					<TabLabel label="Profile " {...a11yProps(6)} />
+					<TabLabel label="Security " {...a11yProps(7)} />
+				</Tabs>
+			</Drawer>
 			<Container
 				maxWidth="xl"
 				sx={{
@@ -304,6 +425,29 @@ const UserDashboardPage = () => {
 					paddingTop: 'calc(45px + (100 - 45) * ((100vw - 320px) / (1920 - 320))); '
 				}}
 			>
+				<MyButtonCustom
+					onClick={toggleDrawer}
+					sx={{
+						display: { xs: 'flex', sm: 'flex', md: 'none', lg: 'none' },
+						width: { xs: 'auto', sm: 'auto', md: '130px', lg: '130px' },
+						textTransform: {
+							xs: 'inherit',
+							sm: 'inherit',
+							md: 'uppercase',
+							lg: 'uppercase'
+						},
+						marginBottom: '15px',
+						fontSize: {
+							xs: '14px',
+							sm: '14px'
+						},
+						gap: '5px',
+						padding: '9px calc(15px + (20 - 15) * ((100vw - 320px) / (1920 - 320)))',
+						lineHeight: '20px'
+					}}
+				>
+					Setting <SettingsIcon />
+				</MyButtonCustom>
 				<Box
 					sx={{
 						flexGrow: 1,
@@ -312,7 +456,20 @@ const UserDashboardPage = () => {
 					}}
 				>
 					<Grid container spacing={2}>
-						<Grid item xs={12} md={3} lg={3}>
+						<Grid
+							item
+							xs={12}
+							md={3}
+							lg={3}
+							sx={{
+								display: {
+									xs: 'none',
+									sm: 'none',
+									md: 'block',
+									lg: 'block'
+								}
+							}}
+						>
 							<Tabs
 								orientation="vertical"
 								variant="scrollable"
@@ -420,7 +577,7 @@ const UserDashboardPage = () => {
 											marginTop: '-2px'
 										}}
 									>
-										Welcome Back Josephin water
+										Welcome {user.fullName}
 									</Typography>
 									<Typography
 										variant="subtitle1"
@@ -432,12 +589,12 @@ const UserDashboardPage = () => {
 											marginTop: 'calc(8px + (10 - 8) * ((100vw - 320px) / (1920 - 320)))'
 										}}
 									>
-										Welcome back Josephin water, here you can customize your profile and also track your order also, you
-										can access your saved address and card. if you want change setting you can do it from here
+										Welcome back {user.fullName}, here you can customize your profile and also track your order also,
+										you can access your saved address and card. if you want change setting you can do it from here
 									</Typography>
 								</Box>
 								<Grid container sx={{ alignItems: 'end' }}>
-									<Grid item xs={6} sm={6} md={3} lg={4}>
+									<Grid item xs={12} sm={6} md={3} lg={4}>
 										<BoxTab>
 											<CardMedia
 												component="img"
@@ -452,7 +609,7 @@ const UserDashboardPage = () => {
 											<Subtitle variant="subtitle1">See order history of previous orders</Subtitle>
 										</BoxTab>
 									</Grid>
-									<Grid item xs={6} sm={6} md={3} lg={4}>
+									<Grid item xs={12} sm={6} md={3} lg={4}>
 										<BoxTab>
 											<CardMedia
 												component="img"
@@ -467,7 +624,7 @@ const UserDashboardPage = () => {
 											<Subtitle variant="subtitle1">Your Wishlist expire within 24h please complete Checkout</Subtitle>
 										</BoxTab>
 									</Grid>
-									<Grid item xs={6} sm={6} md={3} lg={4}>
+									<Grid item xs={12} sm={6} md={3} lg={4}>
 										<BoxTab>
 											<CardMedia
 												component="img"
@@ -482,7 +639,7 @@ const UserDashboardPage = () => {
 											<Subtitle variant="subtitle1">You saved 3 address for delivery</Subtitle>
 										</BoxTab>
 									</Grid>
-									<Grid item xs={6} sm={6} md={3} lg={4}>
+									<Grid item xs={12} sm={6} md={3} lg={4}>
 										<BoxTab>
 											<CardMedia
 												component="img"
@@ -497,7 +654,7 @@ const UserDashboardPage = () => {
 											<Subtitle variant="subtitle1">Check your payment option there are 3 option added</Subtitle>
 										</BoxTab>
 									</Grid>
-									<Grid item xs={6} sm={6} md={3} lg={4}>
+									<Grid item xs={12} sm={6} md={3} lg={4}>
 										<BoxTab>
 											<CardMedia
 												component="img"
@@ -514,7 +671,7 @@ const UserDashboardPage = () => {
 											</Subtitle>
 										</BoxTab>
 									</Grid>
-									<Grid item xs={6} sm={6} md={3} lg={4}>
+									<Grid item xs={12} sm={6} md={3} lg={4}>
 										<BoxTab>
 											<CardMedia
 												component="img"

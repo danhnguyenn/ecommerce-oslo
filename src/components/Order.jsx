@@ -1,4 +1,3 @@
-import useAuth from '$hooks/useAuth';
 import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { Box, Button, styled, Typography } from '@mui/material';
 import PropTypes from 'prop-types';
@@ -30,7 +29,6 @@ const MyButtonCustom = styled(Button)(({ theme }) => ({
 }));
 
 const Order = ({ order }) => {
-	const { user } = useAuth();
 	const { orderItems } = order;
 	const [toggleDetail, setToggleDetail] = useState(false);
 	const [visible, setVisible] = useState(1);

@@ -140,7 +140,7 @@ const LoginPage = () => {
 							How do i get access order,wishlist and recomendation?
 						</Typography>
 						<Box component="form" onSubmit={handleSubmit(onSubmit)}>
-							<InputField control={control} label="Email" name="email" />
+							<InputField control={control} label="Email" name="email" type="email" />
 							<InputField control={control} label="Password" name="password" type="password" />
 							<MyTextLink to="">Forgot password</MyTextLink>
 							<MyButtonCustom type="submit">

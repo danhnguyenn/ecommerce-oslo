@@ -3,7 +3,7 @@ import PropTypes from 'prop-types';
 
 const ProductWishListSkeleton = ({ count }) => {
 	return (
-		<Grid container spacing={2} sx={{ marginTop: '15px' }}>
+		<>
 			{Array.from(new Array(count)).map((_, index) => (
 				<Grid item key={index} xs={6} md={2} sm={4} lg={2}>
 					<Box p={1}>
@@ -15,7 +15,7 @@ const ProductWishListSkeleton = ({ count }) => {
 					</Box>
 				</Grid>
 			))}
-		</Grid>
+		</>
 	);
 };
 

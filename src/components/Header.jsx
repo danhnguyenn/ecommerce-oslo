@@ -33,7 +33,7 @@ import {
 	Tooltip,
 	Typography
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import Marquee from 'react-fast-marquee';
 import { Link, NavLink, useLocation } from 'react-router-dom';
 import logo from '../assets/logo.png';
@@ -94,10 +94,6 @@ const Header = () => {
 	const toggleDrawer = () => {
 		setOpenDrawer(preState => ({ openDrawer: !preState.openDrawer }));
 	};
-
-	useEffect(() => {
-		totalQuantityWishList();
-	}, [likeList]);
 
 	return (
 		<Stack>
@@ -481,18 +477,25 @@ const Header = () => {
 										</ListItemButton>
 									</MyNavLinkMobile>
 								</MyItemMenuMobile>
-								<MyItemMenuMobile disablePadding>
-									<MyNavLinkMobile to={Route.MyLikeProductPage}>
-										<ListItemButton>
-											<IconButton>
-												<Badge badgeContent={4} color="primary">
-													<FavoriteBorderIcon sx={{ color: '#262834' }} />
-												</Badge>
-											</IconButton>
-											<ListItemText primary="My Wishlist" />
-										</ListItemButton>
-									</MyNavLinkMobile>
-								</MyItemMenuMobile>
+								{user ? (
+									<MyItemMenuMobile disablePadding>
+										<MyNavLinkMobile to={Route.MyLikeProductPage}>
+											<ListItemButton>
+												<IconButton>
+													<Badge
+														badgeContent={location.pathname === '/wishlist' ? 0 : totalQuantityWishList()}
+														color="primary"
+													>
+														<FavoriteBorderIcon sx={{ color: '#262834' }} />
+													</Badge>
+												</IconButton>
+												<ListItemText primary="My Wishlist" />
+											</ListItemButton>
+										</MyNavLinkMobile>
+									</MyItemMenuMobile>
+								) : (
+									''
+								)}
 
 								<MyItemMenuMobile disablePadding>
 									<MyNavLinkMobile to={Route.CartPage}>

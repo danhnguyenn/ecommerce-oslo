@@ -15,7 +15,8 @@ const ProductOrder = ({ product, order }) => {
 			<Box
 				sx={{
 					display: 'flex',
-					gap: '15px'
+					gap: '15px',
+					flexDirection: { xs: 'column', sm: 'column', md: 'row', lg: 'row' }
 				}}
 			>
 				<CardMedia
@@ -23,7 +24,12 @@ const ProductOrder = ({ product, order }) => {
 					image={product.image}
 					alt="Paella dish"
 					sx={{
-						width: 'calc(90px + (120 - 90) * ((100vw - 475px) / (1920 - 475)))'
+						width: {
+							xs: '100%',
+							sm: '100%',
+							md: 'calc(90px + (120 - 90) * ((100vw - 475px) / (1920 - 475)))',
+							lg: "'calc(90px + (120 - 90) * ((100vw - 475px) / (1920 - 475)))'"
+						}
 					}}
 				/>
 				<Box>
@@ -39,12 +45,16 @@ const ProductOrder = ({ product, order }) => {
 						{product.name}
 					</Typography>
 					<Typography
-						variant="subtitle1"
+						variant="body1"
 						sx={{
 							fontSize: '14px',
 							color: '#767676',
 							lineHeight: '20px',
-							marginBottom: '16px'
+							marginBottom: '16px',
+							display: '-webkit-box',
+							'-webkit-line-clamp': '3',
+							'-webkit-box-orient': 'vertical',
+							overflow: 'hidden'
 						}}
 					>
 						{product.product.description}

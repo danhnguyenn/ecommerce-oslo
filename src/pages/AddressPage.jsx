@@ -393,7 +393,7 @@ const AddressPage = () => {
 							</Box>
 						</Grid>
 						{addressList.map(address => (
-							<Grid item xs={12} md={6} key={address._id}>
+							<Grid item xs={12} sm={6} md={6} lg={6} key={address._id}>
 								<Box
 									sx={{
 										padding: 'calc(15px + (20 - 15) * ((100vw - 320px) / (1920 - 320)))',
