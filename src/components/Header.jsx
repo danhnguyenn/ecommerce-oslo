@@ -65,10 +65,18 @@ const MyItemMenuMobile = styled(ListItem)(({ theme }) => ({
 	border: '1px solid rgba(221,221,221,0.5)'
 }));
 
+const totalQuantityWishList = likeList => {
+	let amount = 0;
+	for (let i = 0; i < likeList.length; i++) {
+		amount += 1;
+	}
+	return amount;
+};
+
 const Header = () => {
 	const { user, handleLogout } = useAuth();
 	const { totalQuantityCart } = useCart();
-	const { totalQuantityWishList, likeList } = useWishList();
+	const { likeList } = useWishList();
 	const [anchorEl, setAnchorEl] = useState(null);
 	const [anchorElTwo, setAnchorElTwo] = useState(null);
 	const openMenu = Boolean(anchorElTwo);
@@ -340,7 +348,7 @@ const Header = () => {
 										<Tooltip title="Wishlist">
 											<IconButton>
 												<Badge
-													badgeContent={location.pathname === '/wishlist' ? 0 : totalQuantityWishList()}
+													badgeContent={location.pathname === '/wishlist' ? 0 : totalQuantityWishList(likeList)}
 													color="primary"
 												>
 													<FavoriteBorderIcon sx={{ color: '#262834' }} />

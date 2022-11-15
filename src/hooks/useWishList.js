@@ -44,14 +44,6 @@ const useWishList = () => {
 		dispatch(wishListActions.clearProduct(id));
 	};
 
-	const totalQuantityWishList = () => {
-		let amount = 0;
-		for (let i = 0; i < likeList.length; i++) {
-			amount += 1;
-		}
-		return amount;
-	};
-
 	const handleCheckLiked = data => {
 		const newState = [...likeList];
 		const index = newState.findIndex(item => item._id === data.productId);
@@ -64,7 +56,6 @@ const useWishList = () => {
 
 	return {
 		handleCheckLiked,
-		totalQuantityWishList,
 		handleAddWishList,
 		handleDeleteProductWithUser,
 		likeList,
