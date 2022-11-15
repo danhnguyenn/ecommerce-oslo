@@ -135,6 +135,7 @@ const ShopList = () => {
 	const toggleDrawer = () => {
 		setOpenDrawer(preState => ({ openDrawer: !preState.openDrawer }));
 	};
+	const [isActive, setIsActive] = useState('');
 	const [checkedBrands, setCheckedBrands] = useState([]);
 	const { categories, fetchCategoriesAll, isLoading } = useCategory();
 	const { handleFilterCategory, handleFilterBrand, handleFilterSearch, search } = useFilter();
@@ -160,6 +161,11 @@ const ShopList = () => {
 	useEffect(() => {
 		fetchCategoriesAll();
 	}, []);
+
+	const handleToggleActive = categoryId => {
+		handleFilterCategory(categoryId);
+		setIsActive(categoryId);
+	};
 
 	return (
 		<Container>
@@ -413,7 +419,7 @@ const ShopList = () => {
 									) : (
 										categories.map(item => (
 											<MyListItem
-												onClick={() => handleFilterCategory(item._id)}
+												onClick={() => handleToggleActive(item._id)}
 												key={item._id}
 												disablePadding
 												sx={{
@@ -424,6 +430,7 @@ const ShopList = () => {
 													backgroundColor: '#fafafa',
 													borderRadius: '8px'
 												}}
+												className={isActive === item._id ? '' : 'active'}
 											>
 												<MyLink to={Route.ProductPage}>
 													<Typography

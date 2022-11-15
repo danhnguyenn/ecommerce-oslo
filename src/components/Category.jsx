@@ -34,15 +34,16 @@ const MyBox = styled(Box)(({ theme }) => ({
 	}
 }));
 
-const Category = ({ category }) => {
+const Category = ({ category, isActive, onClick }) => {
 	const { handleFilterCategory } = useFilter();
 
 	const handleFilter = category => {
 		handleFilterCategory(category._id);
+		onClick();
 	};
 
 	return (
-		<MyBox onClick={() => handleFilter(category)}>
+		<MyBox onClick={() => handleFilter(category)} className={isActive === category._id ? 'active' : ''}>
 			<CardMedia
 				component="img"
 				image={`${category.imageUrl}`}
@@ -92,5 +93,7 @@ const Category = ({ category }) => {
 export default Category;
 
 Category.propTypes = {
-	category: PropTypes.object.isRequired
+	category: PropTypes.object.isRequired,
+	isActive: PropTypes.string.isRequired,
+	onClick: PropTypes.func.isRequired
 };

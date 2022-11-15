@@ -1,7 +1,7 @@
 import Category from '$components/Category';
 import useCategory from '$hooks/useCategory';
 import { Box } from '@mui/material';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import SwiperCore, { Grid, Navigation, Pagination, Scrollbar, Zoom } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/grid';
@@ -19,6 +19,11 @@ const Categories = () => {
 	useEffect(() => {
 		fetchCategoriesAll();
 	}, [fetchCategoriesAll]);
+	const [isActive, setIsActive] = useState('');
+
+	const handleToggle = categoryId => {
+		setIsActive(categoryId);
+	};
 
 	return (
 		<Box>
@@ -54,7 +59,7 @@ const Categories = () => {
 				>
 					{categories.map(category => (
 						<SwiperSlide key={category._id}>
-							<Category category={category} />
+							<Category category={category} onClick={() => handleToggle(category._id)} isActive={isActive} />
 						</SwiperSlide>
 					))}
 				</Swiper>
