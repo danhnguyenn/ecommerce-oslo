@@ -71,8 +71,8 @@ const ProductCard = ({ product }) => {
 					height: {
 						xs: '200px',
 						sm: '200px',
-						md: '200px',
-						lg: '300px'
+						md: '250px',
+						lg: '280px'
 					},
 					cursor: 'pointer'
 				}}
