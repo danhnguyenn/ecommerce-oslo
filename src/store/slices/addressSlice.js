@@ -41,6 +41,12 @@ const addressSlice = createSlice({
 	reducers: {
 		addChecked: (state, { payload }) => {
 			state.addressChecked = payload;
+		},
+		clearAddress: (state, { payload }) => {
+			state.addressListWithUser.splice(
+				state.addressListWithUser.findIndex(item => item.id === payload),
+				1
+			);
 		}
 	},
 	extraReducers: {

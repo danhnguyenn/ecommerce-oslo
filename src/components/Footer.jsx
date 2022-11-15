@@ -66,6 +66,7 @@ const MyTextFiled = styled(TextField)(({ theme }) => ({
 }));
 
 const MyButtonCustom = styled(Button)(({ theme }) => ({
+	padding: '0 calc(15px + (20 - 15) * ((100vw - 320px) / (1920 - 320)))',
 	color: '#fff',
 	backgroundColor: theme.palette.primary.light,
 	fontWeight: 500,
@@ -141,8 +142,8 @@ const Footer = () => {
 				</Box>
 
 				<Box>
-					<Grid container>
-						<Grid item xs={12} md={3} lg={4} xl={3}>
+					<Grid container spacing={2}>
+						<Grid item xs={12} sm={6} md={6} lg={3} xl={2}>
 							<CardMedia
 								component="img"
 								image="https://themes.pixelstrap.com/oslo/assets/images/logos/logo-w.png"
@@ -174,7 +175,7 @@ const Footer = () => {
 								</MyListItem>
 							</List>
 						</Grid>
-						<Grid item xs={12} md={3} lg={4} xl={2}>
+						<Grid item xs={12} sm={6} md={6} lg={3} xl={2}>
 							<Typography
 								variant="h5"
 								sx={{
@@ -215,7 +216,7 @@ const Footer = () => {
 								</MyListItem>
 							</List>
 						</Grid>
-						<Grid xs={12} md={3} lg={4} xl={2}>
+						<Grid item xs={12} sm={6} md={6} lg={3} xl={2}>
 							<Typography
 								variant="h5"
 								sx={{
@@ -253,7 +254,7 @@ const Footer = () => {
 								</MyListItem>
 							</List>
 						</Grid>
-						<Grid item xs={12} md={3} lg={4} xl={2}>
+						<Grid item xs={12} sm={6} md={6} lg={3} xl={2}>
 							<Typography
 								variant="h5"
 								sx={{
@@ -294,7 +295,7 @@ const Footer = () => {
 								</MyListItem>
 							</List>
 						</Grid>
-						<Grid item xs={12} md={3} lg={4} xl={3}>
+						<Grid item xs={12} sm={6} md={6} lg={3}>
 							<Typography
 								variant="h5"
 								sx={{
@@ -332,8 +333,8 @@ const Footer = () => {
 								sx={{
 									marginTop: '14px',
 									display: 'flex',
-									alignItems: 'center',
-									gap: '10px'
+									gap: '10px',
+									alignItems: 'stretch'
 								}}
 								component="form"
 							>

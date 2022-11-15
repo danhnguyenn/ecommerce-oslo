@@ -2,6 +2,7 @@ import { combineReducers, configureStore } from '@reduxjs/toolkit';
 import { persistStore } from 'redux-persist';
 import addressReducer from './slices/addressSlice';
 import authReducer from './slices/authSlice';
+import brandReducer from './slices/brandSlice';
 import cartReducer from './slices/cartSlice';
 import categoriesReducer from './slices/categoriesSlice';
 import couponReducer from './slices/couponSlice';
@@ -19,6 +20,7 @@ const reducer = combineReducers({
 	address: addressReducer,
 	coupon: couponReducer,
 	order: orderReducer,
+	brand: brandReducer,
 	wishList: wishListReducer
 });
 

@@ -11,6 +11,7 @@ import TopCollection from '$components/TopCollection';
 import withLayout from '$components/withLayout';
 
 const HomePage = () => {
+	window.scrollTo(0, 0);
 	return (
 		<>
 			<Slideshow />

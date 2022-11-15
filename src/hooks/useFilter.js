@@ -1,16 +1,13 @@
 import filterSelector from '$store/selectors/filterSelector';
-import { filterActions, filterAsyncActions } from '$store/slices/filterSlice';
-import { useCallback } from 'react';
+import { filterActions } from '$store/slices/filterSlice';
 import { useDispatch, useSelector } from 'react-redux';
 
 const useFilter = () => {
 	const dispatch = useDispatch();
 
+	const filters = useSelector(filterSelector.selectFilters);
+
 	const search = useSelector(filterSelector.selectFiltersSearch);
-
-	const brands = useSelector(filterSelector.selectFiltersBrand);
-
-	const isLoadingBrand = useSelector(filterSelector.selectIsLoading);
 
 	const isActive = useSelector(filterSelector.selectIsActive);
 
@@ -29,16 +26,11 @@ const useFilter = () => {
 	const handleFilterByPrice = price => {
 		dispatch(filterActions.filterByPrice(price));
 	};
-	const fetchBrandAll = useCallback(() => {
-		dispatch(filterAsyncActions.fetchBrand());
-	}, [dispatch]);
 
 	return {
+		filters,
 		isActive,
-		isLoadingBrand,
-		fetchBrandAll,
 		search,
-		brands,
 		handleFilterCategory,
 		handleFilterBrand,
 		handleFilterSearch,

@@ -1,27 +1,16 @@
-import brandsService from '$services/brandService';
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 
 const initialState = {
 	filter: {
 		search: '',
-		brands: [],
 		categories: '',
 		checkedBrands: [],
-		sortByPrice: {
-			salePrice_gte: 0,
-			salePrice_lte: 0
-		}
+		salePrice_gte: 0,
+		salePrice_lte: 0
 	},
 	isLoading: false,
 	isActive: false
 };
-const fetchBrand = createAsyncThunk('brands/fetchBrand', async (_, { rejectWithValue }) => {
-	try {
-		return await brandsService.getAll();
-	} catch (error) {
-		return rejectWithValue(error);
-	}
-});
 
 const filterSlice = createSlice({
 	name: 'filters',
@@ -37,26 +26,16 @@ const filterSlice = createSlice({
 			state.filter.search = payload;
 		},
 		filterByPrice: (state, { payload }) => {
-			state.filter.sortByPrice = payload;
+			state.filter.salePrice_gte = payload.salePrice_gte;
+			state.filter.salePrice_lte = payload.salePrice_lte;
 		}
 	},
-	extraReducers: {
-		[fetchBrand.fulfilled]: (state, { payload }) => {
-			state.filter.brands = payload.brands;
-			state.isLoading = false;
-		},
-		[fetchBrand.rejected]: state => {
-			state.isLoading = false;
-		},
-		[fetchBrand.pending]: state => {
-			state.isLoading = true;
-		}
-	}
+	extraReducers: {}
 });
 
 export const filterActions = filterSlice.actions;
 
-export const filterAsyncActions = { fetchBrand };
+export const filterAsyncActions = {};
 
 const filterReducer = filterSlice.reducer;
 

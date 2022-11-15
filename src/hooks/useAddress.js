@@ -42,6 +42,10 @@ const useAddress = () => {
 		dispatch(addressActions.addChecked(address));
 	};
 
+	const handleClearAddress = id => {
+		dispatch(addressActions.clearAddress(id));
+	};
+
 	const fetchAddressWithUser = useCallback(
 		userId => {
 			dispatch(addressAsyncAction.getUserWithAddress(userId));
@@ -54,6 +58,7 @@ const useAddress = () => {
 		isLoading,
 		addressChecked,
 		handleAddAddress,
+		handleClearAddress,
 		addressListChecked,
 		handleAddAddressChecked,
 		fetchAddressWithUser,

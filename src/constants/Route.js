@@ -8,11 +8,12 @@ const Route = Object.freeze({
 	OrderSuccessPage: '/order-success/:id',
 	UserDashboardPage: '/user-dashboard',
 	MyLikeProductPage: '/wishlist',
-	SearchPage: '/search',
 	AddressPage: '/address',
 	PaymentPage: '/payment',
 	NotFoundPage: '*',
 	BlogPage: '/blog-list',
+	ContactPage: '/contact',
+	SearchProductPage: '/search',
 
 	HomePage: '/'
 });

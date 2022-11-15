@@ -194,10 +194,17 @@ const schema = yup
 	.required();
 
 const AddressPage = () => {
+	window.scrollTo(0, 0);
 	const { user } = useAuth();
 
-	const { handleAddAddress, fetchAddressWithUser, addressList, handleDeleteAddress, handleAddAddressChecked } =
-		useAddress();
+	const {
+		handleAddAddress,
+		fetchAddressWithUser,
+		addressList,
+		handleDeleteAddress,
+		handleAddAddressChecked,
+		handleClearAddress
+	} = useAddress();
 
 	const { handleChangePriceSale, priceSale, shipPrice } = useCoupon();
 
@@ -252,6 +259,11 @@ const AddressPage = () => {
 
 	const handleCheckCheckedAddress = () => {
 		warning('Please select the address before payment');
+	};
+
+	const handleDelete = id => {
+		handleClearAddress(id);
+		handleDeleteAddress(id);
 	};
 
 	useEffect(() => {
@@ -434,7 +446,7 @@ const AddressPage = () => {
 													}}
 												/>
 											</IconButton>
-											<IconButton onClick={() => handleDeleteAddress(address._id)}>
+											<IconButton onClick={() => handleDelete(address._id)}>
 												<DeleteIcon
 													sx={{
 														width: 'calc(16px + (18 - 16) * ((100vw - 320px) / (1920 - 320)))',

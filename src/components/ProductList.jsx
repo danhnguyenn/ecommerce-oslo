@@ -3,6 +3,7 @@ import ArrowBackIcon from '@mui/icons-material/ArrowBack';
 import ArrowForwardIcon from '@mui/icons-material/ArrowForward';
 import { Box, Grid, Pagination, PaginationItem } from '@mui/material';
 import { useEffect } from 'react';
+import NotFoundData from './NotFoundData';
 import ProductCard from './ProductCard';
 import ProductSkeleton from './ProductSkeleton';
 
@@ -23,7 +24,7 @@ const ProductList = () => {
 				<Grid container spacing={2} sx={{ marginTop: '15px' }}>
 					<ProductSkeleton count={pagination.limit} />
 				</Grid>
-			) : (
+			) : products.length ? (
 				<Grid container spacing={2} sx={{ marginTop: '15px' }}>
 					{products.map(product => (
 						<Grid item xs={6} md={3} sm={3} key={product._id}>
@@ -31,10 +32,13 @@ const ProductList = () => {
 						</Grid>
 					))}
 				</Grid>
+			) : (
+				<NotFoundData />
 			)}
+
 			<Pagination
 				sx={{
-					display: 'flex',
+					display: products.length === 0 ? 'none' : 'flex',
 					justifyContent: 'center',
 					marginTop: 'calc(20px + (42 - 20) * ((100vw - 320px) / (1920 - 320)))',
 					borderRadius: 'none',

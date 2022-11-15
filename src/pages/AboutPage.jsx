@@ -12,6 +12,7 @@ const AboutPage = () => {
 		currentLink: Route.AboutPage,
 		prevLink: Route.HomePage
 	};
+	window.scrollTo(0, 0);
 
 	return (
 		<>

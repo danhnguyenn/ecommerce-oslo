@@ -205,9 +205,11 @@ const Header = () => {
 								</MyNavLink>
 							</ListItem>
 							<ListItem disablePadding>
-								<ListItemButton component="a" href="#simple-list">
-									<ListItemText primary="Contact" />
-								</ListItemButton>
+								<MyNavLink to={Route.ContactPage}>
+									<ListItemButton>
+										<ListItemText primary="Contact" />
+									</ListItemButton>
+								</MyNavLink>
 							</ListItem>
 						</List>
 						<Box
@@ -247,7 +249,7 @@ const Header = () => {
 									alignItems: 'center'
 								}}
 							>
-								<MyNavLink to={Route.SearchPage}>
+								<MyNavLink to={Route.HomePage}>
 									<IconButton sx={{ color: '#262834' }}>
 										<SearchIcon />
 									</IconButton>
@@ -365,54 +367,56 @@ const Header = () => {
 								</MyNavLink>
 							</Box>
 						</Box>
-						<Button
-							onClick={toggleDrawer}
-							sx={{
-								display: {
-									xs: 'block',
-									sm: 'block',
-									md: 'none',
-									lg: 'none'
-								}
-							}}
-						>
-							<MenuIcon />
-						</Button>
-						{user ? (
-							<Tooltip title="Login">
-								<IconButton
-									id="basic-button"
-									onClick={handleMenuClick}
-									sx={{
-										display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' },
-										fontSize: '14px',
-										lineHeight: '20px',
-										color: '#262834',
-										fontWeight: 'normal',
-										textTransform: 'none'
-									}}
-								>
-									<PersonIcon />
-								</IconButton>
-							</Tooltip>
-						) : (
-							<Link to={Route.LoginPage}>
-								<IconButton
-									id="basic-button"
-									onClick={handleMenuClick}
-									sx={{
-										display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' },
-										fontSize: '14px',
-										lineHeight: '20px',
-										color: '#262834',
-										fontWeight: 'normal',
-										textTransform: 'none'
-									}}
-								>
-									<PersonIcon />
-								</IconButton>
-							</Link>
-						)}
+						<Box sx={{ display: 'flex' }}>
+							<Button
+								onClick={toggleDrawer}
+								sx={{
+									display: {
+										xs: 'flex',
+										sm: 'flex',
+										md: 'none',
+										lg: 'none'
+									}
+								}}
+							>
+								<MenuIcon />
+							</Button>
+							{user ? (
+								<Tooltip title="Login">
+									<IconButton
+										id="basic-button"
+										onClick={handleMenuClick}
+										sx={{
+											display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' },
+											fontSize: '14px',
+											lineHeight: '20px',
+											color: '#262834',
+											fontWeight: 'normal',
+											textTransform: 'none'
+										}}
+									>
+										<PersonIcon />
+									</IconButton>
+								</Tooltip>
+							) : (
+								<Link to={Route.LoginPage}>
+									<IconButton
+										id="basic-button"
+										onClick={handleMenuClick}
+										sx={{
+											display: { xs: 'block', sm: 'block', md: 'none', lg: 'none' },
+											fontSize: '14px',
+											lineHeight: '20px',
+											color: '#262834',
+											fontWeight: 'normal',
+											textTransform: 'none'
+										}}
+									>
+										<PersonIcon />
+									</IconButton>
+								</Link>
+							)}
+						</Box>
 						<Drawer
 							open={openDrawer}
 							onClose={() => setOpenDrawer(false)}

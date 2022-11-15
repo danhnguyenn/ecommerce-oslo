@@ -56,6 +56,7 @@ const MyListItem = styled(ListItem)(({ theme }) => ({
 }));
 
 const BlogPage = () => {
+	window.scrollTo(0, 0);
 	const breadcrumb = {
 		title: 'Blog List',
 		currentLink: Route.BlogPage,
@@ -170,20 +171,19 @@ const BlogPage = () => {
 				}}
 			>
 				<Container>
-					<Grid container spacing={3}>
-						<Grid
-							item
-							md={4}
-							sm={4}
-							sx={{
-								display: {
-									xs: 'none',
-									sm: 'none',
-									md: 'block',
-									lg: 'block'
-								}
-							}}
-						>
+					<Grid
+						container
+						spacing={3}
+						sx={{
+							flexDirection: {
+								xs: 'column-reverse',
+								sm: 'column-reverse',
+								md: 'row',
+								lg: 'row'
+							}
+						}}
+					>
+						<Grid item xs={12} md={4} sm={4} lg={4}>
 							<Box
 								component="form"
 								sx={{

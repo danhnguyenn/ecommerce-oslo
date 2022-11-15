@@ -9,6 +9,7 @@ import 'swiper/css/navigation';
 import 'swiper/css/pagination';
 import 'swiper/css/scrollbar';
 import { Swiper, SwiperSlide } from 'swiper/react';
+import '../assets/css/custom.css';
 import CategoriesSkeleton from './CategoriesSkeleton';
 
 SwiperCore.use([Navigation, Pagination, Scrollbar, Zoom]);
@@ -44,7 +45,6 @@ const Categories = () => {
 						}
 					}}
 					pagination={{ clickable: true }}
-					loop
 					params={{
 						zoom: {
 							enabled: true

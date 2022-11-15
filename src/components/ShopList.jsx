@@ -1,4 +1,5 @@
 import Route from '$constants/Route';
+import useBrand from '$hooks/useBrand';
 import useCategory from '$hooks/useCategory';
 import useFilter from '$hooks/useFilter';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
@@ -136,8 +137,9 @@ const ShopList = () => {
 	};
 	const [checkedBrands, setCheckedBrands] = useState([]);
 	const { categories, fetchCategoriesAll, isLoading } = useCategory();
-	const { handleFilterCategory, handleFilterBrand, handleFilterSearch, search, brands, fetchBrandAll, isLoadingBrand } =
-		useFilter();
+	const { handleFilterCategory, handleFilterBrand, handleFilterSearch, search } = useFilter();
+
+	const { fetchBrandAll, isLoadingBrand, brands } = useBrand();
 
 	const handleCheckedFilterBrand = e => {
 		const { checked, value } = e.target;
@@ -152,9 +154,12 @@ const ShopList = () => {
 	};
 
 	useEffect(() => {
-		fetchCategoriesAll();
 		fetchBrandAll();
-	}, [fetchBrandAll, fetchCategoriesAll]);
+	}, []);
+
+	useEffect(() => {
+		fetchCategoriesAll();
+	}, []);
 
 	return (
 		<Container>
@@ -1186,7 +1191,9 @@ const ShopList = () => {
 								A-line short sleeves above the knee red elastance peplum detail wool pink lining statement
 								sophistication jersey tweed white.
 							</MyParagraph>
-							<MyButtonCustom>Shop now</MyButtonCustom>
+							<Box>
+								<MyButtonCustom>Shop now</MyButtonCustom>
+							</Box>
 						</Box>
 					</Box>
 					<ProductList />

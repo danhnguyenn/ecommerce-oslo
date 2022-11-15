@@ -34,7 +34,12 @@ const BlogItem = ({ item }) => {
 			sx={{
 				border: '1px solid rgba(221,221,221,0.5)',
 				width: '100%',
-				display: 'flex',
+				display: {
+					xs: 'block',
+					sm: 'block',
+					md: 'flex',
+					lg: 'flex'
+				},
 				borderRadius: '10px',
 				overflow: 'hidden',
 				marginBottom: 'calc(20px + (25 - 20) * ((100vw - 320px) / (1920 - 320)))'
@@ -45,12 +50,22 @@ const BlogItem = ({ item }) => {
 				image={item.imageUrl}
 				alt="Paella dish"
 				sx={{
-					width: '30%'
+					width: {
+						xs: '100%',
+						sm: '100%',
+						md: '30%',
+						lg: '30%'
+					}
 				}}
 			/>
 			<Box
 				sx={{
-					width: 'calc(100% - 30%)',
+					width: {
+						xs: '100%',
+						sm: '100%',
+						md: 'calc(100% - 30%)',
+						lg: 'calc(100% - 30%)'
+					},
 					padding: 'calc(15px + (20 - 15) * ((100vw - 320px) / (1920 - 320)))'
 				}}
 			>
@@ -161,7 +176,14 @@ const BlogItem = ({ item }) => {
 							}}
 						>
 							<ThumbDownOffAltIcon />
-							26
+							<Typography
+								variant="body1"
+								sx={{
+									display: { xs: 'none', sm: 'block', md: 'block', lg: 'block' }
+								}}
+							>
+								26
+							</Typography>
 						</Box>
 						<Box
 							component="span"
@@ -177,9 +199,27 @@ const BlogItem = ({ item }) => {
 							}}
 						>
 							<ThumbUpOffAltIcon />
-							100
+							<Typography
+								variant="body1"
+								sx={{
+									display: { xs: 'none', sm: 'block', md: 'block', lg: 'block' }
+								}}
+							>
+								100
+							</Typography>
 						</Box>
-						<MyButtonCustom>Reply</MyButtonCustom>
+						<MyButtonCustom
+							sx={{
+								display: {
+									xs: 'none',
+									sm: 'block',
+									md: 'block',
+									lg: 'block'
+								}
+							}}
+						>
+							Reply
+						</MyButtonCustom>
 					</Box>
 				</Box>
 			</Box>

@@ -43,7 +43,7 @@ const MyWishListPage = () => {
 
 	useEffect(() => {
 		fetchWishList(user._id);
-	}, [user._id]);
+	}, [user]);
 
 	return (
 		<Box>
@@ -74,7 +74,7 @@ const MyWishListPage = () => {
 							<ProductWishListSkeleton count={likeList.length} />
 						) : (
 							likeList.map(product => (
-								<Grid item={12} md={2} sm={3} lg={2} key={product._id}>
+								<Grid item xs={6} sm={4} md={3} lg={2} key={product._id}>
 									<ProductWishList product={product} />
 								</Grid>
 							))

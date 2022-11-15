@@ -7,9 +7,11 @@ const productService = {
 	getAll: (pagination, filter) =>
 		axiosClient.get(
 			`${url}?
-			${queryString.stringify(pagination)}
+			search=${filter.search}
 			&categories=${filter.categories}&brands=${filter.checkedBrands}
-			&salePrice_gte=${filter.sortByPrice?.salePrice_gte}&salePrice_lte=${filter.sortByPrice?.salePrice_lte}`
+			&salePrice_gte=${filter.salePrice_gte}&salePrice_lte=${filter.salePrice_lte}&
+			${queryString.stringify(pagination)}
+			`
 		)
 };
 

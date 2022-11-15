@@ -102,6 +102,7 @@ const MyButtonOutlined = styled(Button)(({ theme }) => ({
 }));
 
 const ProductDetail = () => {
+	window.scrollTo(0, 0);
 	const { state } = useLocation();
 	const { fetchProductWithCategory, productsWithCategory } = useCategory();
 	const { handleAddToCart } = useCart();
@@ -118,14 +119,6 @@ const ProductDetail = () => {
 	useEffect(() => {
 		fetchProductWithCategory(state.category);
 	}, [state.category]);
-
-	useEffect(() => {
-		window.scrollTo({
-			top: 0,
-			left: 0,
-			behavior: 'smooth'
-		});
-	}, []);
 
 	return (
 		<>

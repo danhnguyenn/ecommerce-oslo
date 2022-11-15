@@ -6,6 +6,7 @@ import Route from '$constants/Route';
 import { Box } from '@mui/material';
 
 const ProductPage = () => {
+	window.scrollTo(0, 0);
 	const breadcrumb = {
 		title: 'Shop',
 		currentLink: Route.ProductPage,

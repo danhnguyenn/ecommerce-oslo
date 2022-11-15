@@ -3,6 +3,7 @@ import AboutPage from '$pages/AboutPage';
 import AddressPage from '$pages/AddressPage';
 import BlogPage from '$pages/BlogPage';
 import CartPage from '$pages/CartPage';
+import ContactUsPage from '$pages/ContactUsPage';
 import HomePage from '$pages/HomePage';
 import LoginPage from '$pages/LoginPage';
 import MyWishListPage from '$pages/MyWishListPage';
@@ -12,7 +13,6 @@ import Payment from '$pages/Payment';
 import ProductDetailPage from '$pages/ProductDetailPage';
 import ProductPage from '$pages/ProductPage';
 import RegisterPage from '$pages/RegisterPage';
-import SearchProductPage from '$pages/SearchProductPage';
 import UserDashBoard from '$pages/UserDashBoardPage';
 
 const routes = [
@@ -56,10 +56,10 @@ const routes = [
 		path: Route.MyLikeProductPage,
 		element: <MyWishListPage />
 	},
-	{
-		path: Route.SearchPage,
-		element: <SearchProductPage />
-	},
+	// {
+	// 	path: Route.SearchPage,
+	// 	element: <SearchProductPage />
+	// },
 	{
 		path: Route.AddressPage,
 		element: <AddressPage />
@@ -71,6 +71,10 @@ const routes = [
 	{
 		path: Route.BlogPage,
 		element: <BlogPage />
+	},
+	{
+		path: Route.ContactPage,
+		element: <ContactUsPage />
 	},
 	{
 		path: Route.NotFoundPage,
