@@ -46,7 +46,10 @@ const wishListSlice = createSlice({
 		}
 	},
 	extraReducers: {
-		[addWishList.fulfilled]: (state, payload) => {
+		[addWishList.fulfilled]: (state, { payload }) => {
+			if (payload.user) {
+				state.likeList = payload.user ? payload.user.wishListIds : [];
+			}
 			state.isLiked = true;
 			state.isLoading = false;
 		},

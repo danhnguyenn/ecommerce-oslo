@@ -1,6 +1,9 @@
+import CardPayment from '$components/CardPayment';
 import InputField from '$components/InputFields/InputField';
 import MyBreadcrumbs from '$components/MyBreadcrumbs';
 import Order from '$components/Order';
+import PrivacyTab from '$components/PrivacyTab';
+import UserTab from '$components/UserTab';
 import withLayout from '$components/withLayout';
 import Route from '$constants/Route';
 import useAddress from '$hooks/useAddress';
@@ -143,6 +146,19 @@ const MyButtonCustom = styled(Button)(({ theme }) => ({
 	marginTop: '10px',
 	'&:hover': {
 		backgroundColor: theme.palette.secondary.light
+	}
+}));
+
+const MyButtonOutlined = styled(Button)(({ theme }) => ({
+	width: '100%',
+	borderColor: theme.palette.primary.light,
+	borderWidth: '1px',
+	borderStyle: 'solid',
+	color: theme.palette.primary.light,
+	fontWeight: 600,
+	'&:hover': {
+		backgroundColor: theme.palette.primary.light,
+		color: '#fff'
 	}
 }));
 
@@ -950,13 +966,73 @@ const UserDashboardPage = () => {
 								</Box>
 							</TabPanel>
 							<TabPanel value={value} index={5}>
-								Comming Soon
+								<Box
+									sx={{
+										display: 'flex',
+										alignItems: 'center',
+										justifyContent: 'space-between'
+									}}
+								>
+									<Box
+										sx={{
+											marginBottom: 'calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320)))'
+										}}
+									>
+										<Typography
+											variant="h3"
+											sx={{
+												fontSize: 'calc(18px + (22 - 18) * ((100vw - 320px) / (1920 - 320)))',
+												color: '#262834',
+												fontWeight: 500,
+												lineHeight: '22px',
+												marginTop: '-2px'
+											}}
+										>
+											Your Saved Card
+										</Typography>
+										<Typography
+											variant="subtitle1"
+											sx={{
+												fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))',
+												fontWeight: 500,
+												lineHeight: '20px',
+												color: '#767676',
+												marginTop: 'calc(8px + (10 - 8) * ((100vw - 320px) / (1920 - 320)))'
+											}}
+										>
+											here is your saved card, from here you can easily add or modify your card
+										</Typography>
+									</Box>
+									<Box>
+										<MyButtonOutlined>Add Card</MyButtonOutlined>
+									</Box>
+								</Box>
+								<Grid container spacing={2}>
+									<CardPayment
+										color="rgba(15,143,172,0.1)"
+										cardInfo="https://themes.pixelstrap.com/oslo/assets/icons/png/bank1.png"
+										cardType="https://themes.pixelstrap.com/oslo/assets/icons/png/1.png"
+										border="rgba(11,104,125,0.1)"
+									/>
+									<CardPayment
+										color="#fcded6"
+										cardInfo="https://themes.pixelstrap.com/oslo/assets/icons/png/bank2.png"
+										cardType="https://themes.pixelstrap.com/oslo/assets/icons/png/2.png"
+										border="#f9b8a6"
+									/>
+									<CardPayment
+										color="#f9ede1"
+										cardInfo="https://themes.pixelstrap.com/oslo/assets/icons/png/bank3.png"
+										cardType="https://themes.pixelstrap.com/oslo/assets/icons/png/5.png"
+										border="#f1d4b7"
+									/>
+								</Grid>
 							</TabPanel>
 							<TabPanel value={value} index={6}>
-								Comming Soon
+								<UserTab />
 							</TabPanel>
 							<TabPanel value={value} index={7}>
-								Comming Soon
+								<PrivacyTab />
 							</TabPanel>
 						</Grid>
 					</Grid>

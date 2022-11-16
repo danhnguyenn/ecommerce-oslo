@@ -3,7 +3,7 @@ import axiosClient from './axiosClient';
 const wishListService = {
 	addWishList: params => {
 		const url = `/users/liked-product/${params.userId}/${params.productId}`;
-		return axiosClient.get(url);
+		return axiosClient.put(url);
 	},
 	getWishListWithUser: id => {
 		const url = `/users/liked-product/${id}`;

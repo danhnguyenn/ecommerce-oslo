@@ -44,18 +44,7 @@ const useWishList = () => {
 		dispatch(wishListActions.clearProduct(id));
 	};
 
-	const handleCheckLiked = data => {
-		const newState = [...likeList];
-		const index = newState.findIndex(item => item._id === data.productId);
-		if (index >= 0) {
-			error('Already loved');
-		} else {
-			handleAddWishList(data);
-		}
-	};
-
 	return {
-		handleCheckLiked,
 		handleAddWishList,
 		handleDeleteProductWithUser,
 		likeList,

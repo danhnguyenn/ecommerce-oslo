@@ -47,7 +47,7 @@ const NewBadge = styled('span')(({ theme }) => ({
 const ProductCard = ({ product }) => {
 	const { warning } = useNotify();
 	const { user } = useAuth();
-	const { handleCheckLiked } = useWishList();
+	const { handleAddWishList } = useWishList();
 	const { handleAddToCart } = useCart();
 	const navigate = useNavigate();
 
@@ -112,7 +112,7 @@ const ProductCard = ({ product }) => {
 					>
 						<Tooltip title="Wishlist" placement="left-start">
 							<IconButton
-								onClick={() => handleCheckLiked({ userId: user._id, productId: product._id })}
+								onClick={() => handleAddWishList({ userId: user._id, productId: product._id })}
 								sx={{
 									'&:hover': {
 										backgroundColor: '#0f8fac',

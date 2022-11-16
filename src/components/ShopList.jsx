@@ -1,8 +1,6 @@
-import Route from '$constants/Route';
 import useBrand from '$hooks/useBrand';
 import useCategory from '$hooks/useCategory';
 import useFilter from '$hooks/useFilter';
-import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import CloseIcon from '@mui/icons-material/Close';
 import SearchIcon from '@mui/icons-material/Search';
 import TrendingFlatIcon from '@mui/icons-material/TrendingFlat';
@@ -26,6 +24,7 @@ import {
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FilterByPrice from './Filters/FilterByPrice';
+import MyItem from './MyItem';
 import PopularCardMini from './PopularCardMini';
 import ProductList from './ProductList';
 import TypographySkeleton from './TypographySkeleton';
@@ -60,32 +59,6 @@ const MyLink = styled(Link)(({ theme }) => ({
 	justifyContent: 'space-between',
 	textDecoration: 'none',
 	width: '100%'
-}));
-
-const MyListItem = styled(ListItem)(({ theme }) => ({
-	display: 'flex',
-	justifyContent: 'space-between',
-	padding:
-		'calc(6px + (8 - 6) * ((100vw - 320px) / (1920 - 320))) calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)))',
-	backgroundColor: '#fafafa',
-	borderRadius: '8px',
-	'&:hover': {
-		backgroundColor: theme.palette.primary.light,
-		color: '#fff',
-		'& a': {
-			color: '#fff'
-		},
-		'& span': {
-			color: '#fff'
-		},
-		'& svg': {
-			color: '#fff'
-		}
-	},
-	'&.active': {
-		backgroundColor: theme.palette.primary.light,
-		color: '#fff'
-	}
 }));
 
 const MyHeadingFour = styled(Typography)(({ theme }) => ({
@@ -130,12 +103,41 @@ const MyButtonCustom = styled(Button)(({ theme }) => ({
 	}
 }));
 
+const MyListItem = styled(ListItem)(({ theme }) => ({
+	display: 'flex',
+	justifyContent: 'space-between',
+	padding:
+		'calc(6px + (8 - 6) * ((100vw - 320px) / (1920 - 320))) calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)))',
+	backgroundColor: '#fafafa',
+	borderRadius: '8px',
+	'&:hover': {
+		backgroundColor: theme.palette.primary.light,
+		color: '#fff',
+		'& a': {
+			color: '#fff'
+		},
+		'& span': {
+			color: '#fff'
+		},
+		'& svg': {
+			color: '#fff'
+		}
+	},
+	'&.active': {
+		backgroundColor: theme.palette.primary.light,
+		color: '#fff',
+		'& a': {
+			color: '#fff'
+		}
+	}
+}));
+
 const ShopList = () => {
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const toggleDrawer = () => {
 		setOpenDrawer(preState => ({ openDrawer: !preState.openDrawer }));
 	};
-	const [isActive, setIsActive] = useState('');
+	const [active, setActive] = useState('');
 	const [checkedBrands, setCheckedBrands] = useState([]);
 	const { categories, fetchCategoriesAll, isLoading } = useCategory();
 	const { handleFilterCategory, handleFilterBrand, handleFilterSearch, search } = useFilter();
@@ -162,9 +164,8 @@ const ShopList = () => {
 		fetchCategoriesAll();
 	}, []);
 
-	const handleToggleActive = categoryId => {
-		handleFilterCategory(categoryId);
-		setIsActive(categoryId);
+	const handleToggle = category => {
+		setActive(category._id);
 	};
 
 	return (
@@ -418,50 +419,7 @@ const ShopList = () => {
 										<TypographySkeleton count={categories.length} />
 									) : (
 										categories.map(item => (
-											<MyListItem
-												onClick={() => handleToggleActive(item._id)}
-												key={item._id}
-												disablePadding
-												sx={{
-													display: 'flex',
-													justifyContent: 'space-between',
-													padding:
-														'calc(6px + (8 - 6) * ((100vw - 320px) / (1920 - 320))) calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)))',
-													backgroundColor: '#fafafa',
-													borderRadius: '8px'
-												}}
-												className={isActive === item._id ? '' : 'active'}
-											>
-												<MyLink to={Route.ProductPage}>
-													<Typography
-														component="span"
-														sx={{
-															display: 'flex',
-															alignItems: 'center',
-															gap: 'calc(7px + (10 - 7) * ((100vw - 320px) / (1920 - 320)))'
-														}}
-													>
-														<ArrowRightAltIcon
-															sx={{
-																width: '16px',
-																height: '16px',
-																stroke: '#767676'
-															}}
-														/>
-														{item.name}
-													</Typography>
-													<Typography
-														component="span"
-														sx={{
-															color: '#0f8fac',
-															fonSize: '14px',
-															fontWeight: 600
-														}}
-													>
-														{' '}
-													</Typography>
-												</MyLink>
-											</MyListItem>
+											<MyItem key={item._id} active={active} onToggle={() => handleToggle(item)} item={item} />
 										))
 									)}
 								</List>
@@ -862,49 +820,7 @@ const ShopList = () => {
 										<TypographySkeleton count={categories.length} />
 									) : (
 										categories.map(item => (
-											<MyListItem
-												onClick={() => handleFilterCategory(item._id)}
-												key={item._id}
-												disablePadding
-												sx={{
-													display: 'flex',
-													justifyContent: 'space-between',
-													padding:
-														'calc(6px + (8 - 6) * ((100vw - 320px) / (1920 - 320))) calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)))',
-													backgroundColor: '#fafafa',
-													borderRadius: '8px'
-												}}
-											>
-												<MyLink to={Route.ProductPage}>
-													<Typography
-														component="span"
-														sx={{
-															display: 'flex',
-															alignItems: 'center',
-															gap: 'calc(7px + (10 - 7) * ((100vw - 320px) / (1920 - 320)))'
-														}}
-													>
-														<ArrowRightAltIcon
-															sx={{
-																width: '16px',
-																height: '16px',
-																stroke: '#767676'
-															}}
-														/>
-														{item.name}
-													</Typography>
-													<Typography
-														component="span"
-														sx={{
-															color: '#0f8fac',
-															fonSize: '14px',
-															fontWeight: 600
-														}}
-													>
-														{' '}
-													</Typography>
-												</MyLink>
-											</MyListItem>
+											<MyItem key={item._id} active={active} onToggle={() => handleToggle(item)} item={item} />
 										))
 									)}
 								</List>

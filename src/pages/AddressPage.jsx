@@ -218,7 +218,7 @@ const AddressPage = () => {
 
 	const { warning } = useNotify();
 
-	const [selected, setSelected] = useState('');
+	const [selected, setSelected] = useState(addressList[0]._id);
 
 	const [open, setOpen] = useState(false);
 

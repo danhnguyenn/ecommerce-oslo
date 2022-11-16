@@ -67,14 +67,14 @@ const MyItemMenuMobile = styled(ListItem)(({ theme }) => ({
 	border: '1px solid rgba(221,221,221,0.5)'
 }));
 
-const totalQuantityWishList = likeList => {
-	if (!likeList) return;
-	let amount = 0;
-	for (let i = 0; i < likeList.length; i++) {
-		amount += 1;
-	}
-	return amount;
-};
+// const totalQuantityWishList = likeList => {
+// 	if (!likeList) return;
+// 	let amount = 0;
+// 	for (let i = 0; i < likeList.length; i++) {
+// 		amount += 1;
+// 	}
+// 	return amount;
+// };
 
 const Header = () => {
 	const { user, handleLogout, isLoading } = useAuth();
@@ -350,10 +350,7 @@ const Header = () => {
 									<MyNavLink to={Route.MyLikeProductPage}>
 										<Tooltip title="Wishlist">
 											<IconButton>
-												<Badge
-													badgeContent={location.pathname === '/wishlist' ? 0 : totalQuantityWishList(likeList)}
-													color="primary"
-												>
+												<Badge badgeContent={location.pathname === '/wishlist' ? 0 : likeList.length} color="primary">
 													<FavoriteBorderIcon sx={{ color: '#262834' }} />
 												</Badge>
 											</IconButton>
@@ -493,10 +490,7 @@ const Header = () => {
 										<MyNavLinkMobile to={Route.MyLikeProductPage}>
 											<ListItemButton>
 												<IconButton>
-													<Badge
-														badgeContent={location.pathname === '/wishlist' ? 0 : totalQuantityWishList()}
-														color="primary"
-													>
+													<Badge badgeContent={location.pathname === '/wishlist' ? 0 : likeList.length} color="primary">
 														<FavoriteBorderIcon sx={{ color: '#262834' }} />
 													</Badge>
 												</IconButton>
