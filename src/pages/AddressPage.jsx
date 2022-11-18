@@ -234,7 +234,9 @@ const AddressPage = () => {
 	};
 
 	useEffect(() => {
-		fetchAddressWithUser(user._id);
+		if (user) {
+			fetchAddressWithUser(user._id);
+		}
 	}, [user, addressEdit]);
 
 	const { control, handleSubmit, reset, setValue } = useForm({

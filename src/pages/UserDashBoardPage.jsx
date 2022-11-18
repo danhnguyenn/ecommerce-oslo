@@ -299,7 +299,9 @@ const UserDashboardPage = () => {
 	};
 
 	useEffect(() => {
-		fetchOrderDetail(user._id);
+		if (user) {
+			fetchOrderDetail(user._id);
+		}
 	}, [user]);
 
 	const { control, handleSubmit, reset, setValue } = useForm({
@@ -316,7 +318,10 @@ const UserDashboardPage = () => {
 	});
 
 	useEffect(() => {
-		fetchAddressWithUser(user._id);
+		if (user) {
+			fetchAddressWithUser(user._id);
+		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, addressEdit]);
 
 	useEffect(() => {

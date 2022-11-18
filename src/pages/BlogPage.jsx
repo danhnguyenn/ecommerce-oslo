@@ -5,7 +5,7 @@ import Route from '$constants/Route';
 import ArrowRightAltIcon from '@mui/icons-material/ArrowRightAlt';
 import SearchIcon from '@mui/icons-material/Search';
 import { Box, Button, CardMedia, Container, Grid, List, ListItem, styled, TextField, Typography } from '@mui/material';
-import BlogItem from './BlogItem';
+import BlogItem from '../components/BlogItem';
 
 const MyButtonSearch = styled(Button)(({ theme }) => ({
 	color: theme.palette.primary.main,

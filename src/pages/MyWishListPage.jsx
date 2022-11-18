@@ -7,7 +7,7 @@ import useAuth from '$hooks/useAuth';
 import useWishList from '$hooks/useWishList';
 import { Box, Button, Container, Grid, styled, Typography } from '@mui/material';
 import { useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 
 const MyButtonCustom = styled(Button)(({ theme }) => ({
 	color: '#fff',
@@ -42,8 +42,14 @@ const MyWishListPage = () => {
 	const { fetchWishList, likeList, isLoading } = useWishList();
 
 	useEffect(() => {
-		fetchWishList(user._id);
+		if (user) {
+			fetchWishList(user._id);
+		}
 	}, [user]);
+
+	if (!user) {
+		return <Navigate to={Route.ErrorLoginPage} replace />;
+	}
 
 	return (
 		<Box>
