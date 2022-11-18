@@ -14,6 +14,7 @@ const Route = Object.freeze({
 	BlogPage: '/blog-list',
 	ContactPage: '/contact',
 	SearchProductPage: '/search',
+	ErrorLoginPage: '/error',
 
 	HomePage: '/'
 });

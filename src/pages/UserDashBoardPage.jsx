@@ -41,7 +41,7 @@ import Typography from '@mui/material/Typography';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 const TabLabel = styled(Tab)(({ theme }) => ({
@@ -316,6 +316,10 @@ const UserDashboardPage = () => {
 		reset();
 		setOpen(false);
 	};
+
+	if (!user) {
+		return <Navigate to={Route.ErrorLoginPage} replace />;
+	}
 
 	return (
 		<>

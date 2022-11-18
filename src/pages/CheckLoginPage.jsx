@@ -16,10 +16,11 @@ const MyButtonCustom = styled(Button)(({ theme }) => ({
 		backgroundColor: theme.palette.secondary.light
 	}
 }));
-const NotFound = () => {
+
+const CheckLoginPage = () => {
 	const breadcrumb = {
-		title: '404 Error',
-		currentLink: Route.NotFoundPage,
+		title: 'Error',
+		currentLink: Route.ErrorLoginPage,
 		prevLink: Route.HomePage
 	};
 	return (
@@ -59,36 +60,34 @@ const NotFound = () => {
 							sx={{
 								textAlign: 'center',
 								padding: '0 calc(0px + (50 - 0) * ((100vw - 320px) / (1920 - 320)))',
-								marginTop: 'calc(10px + (20 - 10) * ((100vw - 320px) / (1920 - 320)))'
+								marginTop: '10px'
 							}}
 						>
 							<Typography
 								variant="h2"
 								sx={{
-									marginBottom: 'calc(10px + (20 - 10) * ((100vw - 320px) / (1920 - 320)));',
+									marginBottom: '5px',
 									color: '#262834;',
 									fontSize: 'calc(22px + (35 - 22) * ((100vw - 320px) / (1920 - 320)));',
-									marginTop: '-3px',
 									fontWeight: 600,
 									textTransform: 'capitalize'
 								}}
 							>
-								page not found
+								Error
 							</Typography>
 							<Typography
 								variant="body1"
 								sx={{
 									lineHeight: 1.6,
 									color: '#767676',
-									fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))',
-									marginBottom: '16px'
+									fontSize: '16px',
+									marginBottom: '5px'
 								}}
 							>
-								The page you are looking for doesn&apos;t exist or an other error occurred. Go back, or head over to
-								choose a new direction.
+								Please login to continue
 							</Typography>
 							<Link
-								to={Route.HomePage}
+								to={Route.LoginPage}
 								style={{
 									color: '#0f8fac',
 									textDecoration: 'none',
@@ -97,7 +96,7 @@ const NotFound = () => {
 									}
 								}}
 							>
-								<MyButtonCustom>Back Home page</MyButtonCustom>
+								<MyButtonCustom>Login</MyButtonCustom>
 							</Link>
 						</Box>
 					</Grid>
@@ -107,4 +106,4 @@ const NotFound = () => {
 	);
 };
 
-export default withLayout(NotFound);
+export default withLayout(CheckLoginPage);

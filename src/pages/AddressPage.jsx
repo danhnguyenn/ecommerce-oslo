@@ -37,7 +37,7 @@ import {
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, Navigate } from 'react-router-dom';
 import * as yup from 'yup';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
@@ -195,7 +195,12 @@ const schema = yup
 
 const AddressPage = () => {
 	window.scrollTo(0, 0);
+
 	const { user } = useAuth();
+
+	const { handleChangePriceSale, priceSale, shipPrice } = useCoupon();
+
+	const { cartsSelected, countSelectCart } = useCart();
 
 	const {
 		handleAddAddress,
@@ -206,10 +211,6 @@ const AddressPage = () => {
 		handleClearAddress
 	} = useAddress();
 
-	const { handleChangePriceSale, priceSale, shipPrice } = useCoupon();
-
-	const { cartsSelected, countSelectCart } = useCart();
-
 	const [subTotal, setSubtotal] = useState();
 
 	const handleChange = e => {
@@ -218,7 +219,7 @@ const AddressPage = () => {
 
 	const { warning } = useNotify();
 
-	const [selected, setSelected] = useState(addressList[0]._id);
+	const [selected, setSelected] = useState(addressList[0] ? addressList[0]._id : '');
 
 	const [open, setOpen] = useState(false);
 
@@ -231,7 +232,7 @@ const AddressPage = () => {
 
 	useEffect(() => {
 		fetchAddressWithUser(user._id);
-	}, []);
+	}, [user]);
 
 	const { control, handleSubmit, reset } = useForm({
 		defaultValues: {
@@ -273,6 +274,10 @@ const AddressPage = () => {
 		}
 		setSubtotal(total);
 	}, [cartsSelected]);
+
+	if (!user) {
+		return <Navigate to={Route.ErrorLoginPage} replace />;
+	}
 
 	return (
 		<Container

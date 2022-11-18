@@ -56,7 +56,6 @@ const authSlice = createSlice({
 		[register.fulfilled]: (state, { payload }) => {
 			state.user = payload.user;
 			state.isLoading = false;
-			state.isLogined = true;
 
 			authStorage.saveToken(payload.token, payload.refreshToken);
 		},

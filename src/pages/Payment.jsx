@@ -39,7 +39,7 @@ import {
 } from '@mui/material';
 import PropTypes from 'prop-types';
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, Navigate, useNavigate } from 'react-router-dom';
 
 const MyTitle = styled(Typography)(({ theme }) => ({
 	fontSize: '16px',
@@ -228,6 +228,10 @@ const Payment = () => {
 			handleResetOrder();
 		}
 	}, [navigate, order, successOrder]);
+
+	if (!user) {
+		return <Navigate to={Route.ErrorLoginPage} replace />;
+	}
 
 	const handleAddValueOrder = () => {
 		const data = {

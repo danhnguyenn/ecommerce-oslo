@@ -3,6 +3,7 @@ import AboutPage from '$pages/AboutPage';
 import AddressPage from '$pages/AddressPage';
 import BlogPage from '$pages/BlogPage';
 import CartPage from '$pages/CartPage';
+import ErrorLoginPage from '$pages/CheckLoginPage';
 import ContactUsPage from '$pages/ContactUsPage';
 import HomePage from '$pages/HomePage';
 import LoginPage from '$pages/LoginPage';
@@ -75,6 +76,10 @@ const routes = [
 	{
 		path: Route.ContactPage,
 		element: <ContactUsPage />
+	},
+	{
+		path: Route.ErrorLoginPage,
+		element: <ErrorLoginPage />
 	},
 	{
 		path: Route.NotFoundPage,
