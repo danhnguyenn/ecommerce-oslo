@@ -380,17 +380,18 @@ const CartPage = () => {
 										</Box>
 									) : (
 										<Box
-											component="p"
 											sx={{
 												color: '#767676',
-												fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))'
+												fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))',
+												whiteSpace: 'nowrap'
 											}}
 										>
 											<Button
 												sx={{
-													textDecoration: 'none',
 													color: '#0f8fac',
-													fontWeight: 600
+													fontWeight: 600,
+													minWidth: 'auto',
+													padding: '4px'
 												}}
 												onClick={handleNavigate}
 											>
