@@ -52,8 +52,8 @@ const ProductOrder = ({ product, order }) => {
 							lineHeight: '20px',
 							marginBottom: '16px',
 							display: '-webkit-box',
-							'-webkit-line-clamp': '3',
-							'-webkit-box-orient': 'vertical',
+							WebkitLineClamp: '3',
+							WebkitBoxOrient: 'vertical',
 							overflow: 'hidden'
 						}}
 					>

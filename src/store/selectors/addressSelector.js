@@ -6,6 +6,8 @@ const selectAddressList = createSelector(selectAddress, address => address.addre
 
 const selectAddressChecked = createSelector(selectAddress, address => address.addressChecked);
 
+const selectAddressEdit = createSelector(selectAddress, address => address.addressEdit);
+
 const selectAddressCheckedList = createSelector(
 	selectAddressList,
 	selectAddressChecked,
@@ -17,6 +19,7 @@ const selectAddressCheckedList = createSelector(
 const selectIsLoading = createSelector(selectAddress, address => address.isLoading);
 
 const addressSelector = {
+	selectAddressEdit,
 	selectAddressList,
 	selectIsLoading,
 	selectAddressChecked,

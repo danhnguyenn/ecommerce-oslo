@@ -67,15 +67,6 @@ const MyItemMenuMobile = styled(ListItem)(({ theme }) => ({
 	border: '1px solid rgba(221,221,221,0.5)'
 }));
 
-// const totalQuantityWishList = likeList => {
-// 	if (!likeList) return;
-// 	let amount = 0;
-// 	for (let i = 0; i < likeList.length; i++) {
-// 		amount += 1;
-// 	}
-// 	return amount;
-// };
-
 const Header = () => {
 	const { user, handleLogout, isLoading } = useAuth();
 	const { totalQuantityCart } = useCart();

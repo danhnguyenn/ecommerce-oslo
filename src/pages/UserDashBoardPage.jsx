@@ -257,11 +257,19 @@ const schema = yup
 
 const UserDashboardPage = () => {
 	const { user } = useAuth();
-	const { handleAddAddress, fetchAddressWithUser, addressList, handleDeleteAddress, handleAddAddressChecked } =
-		useAddress();
+	const {
+		addressEdit,
+		handleAddAddress,
+		fetchAddressWithUser,
+		addressList,
+		handleDeleteAddress,
+		handleAddAddressChecked,
+		handleEditAddress,
+		handleUpdateAddress
+	} = useAddress();
 	const { fetchOrderDetail, orderList } = useOrder();
-	const [value, setValue] = useState(1);
-	const [selected, setSelected] = useState('');
+	const [valueTab, setValueTab] = useState(1);
+	const [selected, setSelected] = useState(addressList ? addressList[0]._id : '');
 	const [open, setOpen] = useState(false);
 	const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -270,7 +278,7 @@ const UserDashboardPage = () => {
 	};
 
 	const handleChange = (event, newValue) => {
-		setValue(newValue);
+		setValueTab(newValue);
 	};
 
 	const handleClickOpen = () => {
@@ -291,14 +299,10 @@ const UserDashboardPage = () => {
 	};
 
 	useEffect(() => {
-		fetchAddressWithUser(user._id);
-	}, []);
-
-	useEffect(() => {
 		fetchOrderDetail(user._id);
-	}, []);
+	}, [user]);
 
-	const { control, handleSubmit, reset } = useForm({
+	const { control, handleSubmit, reset, setValue } = useForm({
 		defaultValues: {
 			fullName: '',
 			address: '',
@@ -311,9 +315,37 @@ const UserDashboardPage = () => {
 		resolver: yupResolver(schema)
 	});
 
-	const onSubmit = data => {
-		handleAddAddress({ ...data, userId: user._id });
-		reset();
+	useEffect(() => {
+		fetchAddressWithUser(user._id);
+	}, [user, addressEdit]);
+
+	useEffect(() => {
+		if (addressEdit) {
+			setValue('fullName', addressEdit.fullName);
+			setValue('address', addressEdit.address);
+			setValue('apartment', addressEdit.apartment);
+			setValue('city', addressEdit.city);
+			setValue('zip', addressEdit.zip);
+			setValue('country', addressEdit.country);
+			setValue('phone', addressEdit.phone);
+		}
+	}, [addressEdit, setValue]);
+
+	const handleEdit = address => {
+		handleEditAddress(address);
+		setOpen(true);
+	};
+
+	const onSubmit = async data => {
+		if (addressEdit) {
+			await handleUpdateAddress({ addressId: addressEdit._id, ...data });
+			handleEditAddress(null);
+			reset();
+		} else {
+			handleAddAddress({ ...data, userId: user._id });
+			reset();
+		}
+
 		setOpen(false);
 	};
 
@@ -349,7 +381,7 @@ const UserDashboardPage = () => {
 				<Tabs
 					orientation="vertical"
 					variant="scrollable"
-					value={value}
+					value={valueTab}
 					onChange={handleChange}
 					aria-label="Vertical tabs example"
 					sx={{
@@ -493,7 +525,7 @@ const UserDashboardPage = () => {
 							<Tabs
 								orientation="vertical"
 								variant="scrollable"
-								value={value}
+								value={valueTab}
 								onChange={handleChange}
 								aria-label="Vertical tabs example"
 								sx={{
@@ -581,7 +613,7 @@ const UserDashboardPage = () => {
 							</Tabs>
 						</Grid>
 						<Grid item xs={12} md={9} lg={9}>
-							<TabPanel value={value} index={1}>
+							<TabPanel value={valueTab} index={1}>
 								<Box
 									sx={{
 										marginBottom: 'calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320)))'
@@ -708,7 +740,7 @@ const UserDashboardPage = () => {
 									</Grid>
 								</Grid>
 							</TabPanel>
-							<TabPanel value={value} index={2}>
+							<TabPanel value={valueTab} index={2}>
 								<Box
 									sx={{
 										marginBottom: 'calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320)))'
@@ -761,7 +793,7 @@ const UserDashboardPage = () => {
 									</Box>
 								)}
 							</TabPanel>
-							<TabPanel value={value} index={4}>
+							<TabPanel value={valueTab} index={4}>
 								<Box
 									sx={{
 										marginBottom: 'calc(25px + (30 - 25) * ((100vw - 320px) / (1920 - 320)))'
@@ -816,25 +848,25 @@ const UserDashboardPage = () => {
 														<Box component="form" onSubmit={handleSubmit(onSubmit)}>
 															<Grid container spacing={1}>
 																<Grid item xs={12} md={12}>
-																	<InputField control={control} label="Full Name" name="fullName" />
+																	<InputField control={control} label="Full Name" name="fullName" type="text" />
 																</Grid>
 																<Grid item xs={12} md={12}>
-																	<InputField control={control} label="Address" name="address" />
+																	<InputField control={control} label="Address" name="address" type="text" />
 																</Grid>
 																<Grid item xs={12} md={6}>
-																	<InputField control={control} label="Apartment" name="apartment" />
+																	<InputField control={control} label="Apartment" name="apartment" type="text" />
 																</Grid>
 																<Grid item xs={12} md={6}>
-																	<InputField control={control} label="City" name="city" />
+																	<InputField control={control} label="City" name="city" type="text" />
 																</Grid>
 																<Grid item xs={12} md={6}>
-																	<InputField control={control} label="Zip" name="zip" />
+																	<InputField control={control} label="Zip" name="zip" type="number" />
 																</Grid>
 																<Grid item xs={12} md={6}>
-																	<InputField control={control} label="Country" name="country" />
+																	<InputField control={control} label="Country" name="country" type="text" />
 																</Grid>
 																<Grid item xs={12} md={6}>
-																	<InputField control={control} label="Phone" name="phone" />
+																	<InputField control={control} label="Phone" name="phone" type="number" />
 																</Grid>
 															</Grid>
 															<Box
@@ -932,7 +964,7 @@ const UserDashboardPage = () => {
 																gap: '10px'
 															}}
 														>
-															<IconButton>
+															<IconButton onClick={() => handleEdit(address)}>
 																<BorderColorIcon
 																	sx={{
 																		width: 'calc(16px + (18 - 16) * ((100vw - 320px) / (1920 - 320)))',
@@ -969,7 +1001,7 @@ const UserDashboardPage = () => {
 									</Grid>
 								</Box>
 							</TabPanel>
-							<TabPanel value={value} index={5}>
+							<TabPanel value={valueTab} index={5}>
 								<Box
 									sx={{
 										display: 'flex',
@@ -1032,10 +1064,10 @@ const UserDashboardPage = () => {
 									/>
 								</Grid>
 							</TabPanel>
-							<TabPanel value={value} index={6}>
+							<TabPanel value={valueTab} index={6}>
 								<UserTab />
 							</TabPanel>
-							<TabPanel value={value} index={7}>
+							<TabPanel value={valueTab} index={7}>
 								<PrivacyTab />
 							</TabPanel>
 						</Grid>

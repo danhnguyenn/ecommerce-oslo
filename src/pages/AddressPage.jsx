@@ -203,12 +203,15 @@ const AddressPage = () => {
 	const { cartsSelected, countSelectCart } = useCart();
 
 	const {
+		addressEdit,
 		handleAddAddress,
 		fetchAddressWithUser,
 		addressList,
 		handleDeleteAddress,
 		handleAddAddressChecked,
-		handleClearAddress
+		handleClearAddress,
+		handleEditAddress,
+		handleUpdateAddress
 	} = useAddress();
 
 	const [subTotal, setSubtotal] = useState();
@@ -219,7 +222,7 @@ const AddressPage = () => {
 
 	const { warning } = useNotify();
 
-	const [selected, setSelected] = useState(addressList[0] ? addressList[0]._id : '');
+	const [selected, setSelected] = useState(addressList ? addressList[0]._id : '');
 
 	const [open, setOpen] = useState(false);
 
@@ -232,9 +235,9 @@ const AddressPage = () => {
 
 	useEffect(() => {
 		fetchAddressWithUser(user._id);
-	}, [user]);
+	}, [user, addressEdit]);
 
-	const { control, handleSubmit, reset } = useForm({
+	const { control, handleSubmit, reset, setValue } = useForm({
 		defaultValues: {
 			fullName: '',
 			address: '',
@@ -247,8 +250,13 @@ const AddressPage = () => {
 		resolver: yupResolver(schema)
 	});
 
-	const onSubmit = data => {
-		handleAddAddress({ ...data, userId: user._id });
+	const onSubmit = async data => {
+		if (addressEdit) {
+			await handleUpdateAddress({ addressId: addressEdit._id, ...data });
+			handleEditAddress(null);
+		} else {
+			handleAddAddress({ ...data, userId: user._id });
+		}
 		reset();
 		setOpen(false);
 	};
@@ -266,6 +274,23 @@ const AddressPage = () => {
 		handleClearAddress(id);
 		handleDeleteAddress(id);
 	};
+
+	const handleEdit = address => {
+		handleEditAddress(address);
+		setOpen(true);
+	};
+
+	useEffect(() => {
+		if (addressEdit) {
+			setValue('fullName', addressEdit.fullName);
+			setValue('address', addressEdit.address);
+			setValue('apartment', addressEdit.apartment);
+			setValue('city', addressEdit.city);
+			setValue('zip', addressEdit.zip);
+			setValue('country', addressEdit.country);
+			setValue('phone', addressEdit.phone);
+		}
+	}, [addressEdit, setValue]);
 
 	useEffect(() => {
 		let total = 0;
@@ -327,25 +352,25 @@ const AddressPage = () => {
 										<Box component="form" onSubmit={handleSubmit(onSubmit)}>
 											<Grid container spacing={1}>
 												<Grid item xs={12} md={12}>
-													<InputField control={control} label="Full Name" name="fullName" />
+													<InputField control={control} label="Full Name" name="fullName" type="text" />
 												</Grid>
 												<Grid item xs={12} md={12}>
-													<InputField control={control} label="Address" name="address" />
+													<InputField control={control} label="Address" name="address" type="text" />
 												</Grid>
 												<Grid item xs={12} md={6}>
-													<InputField control={control} label="Apartment" name="apartment" />
+													<InputField control={control} label="Apartment" name="apartment" type="text" />
 												</Grid>
 												<Grid item xs={12} md={6}>
-													<InputField control={control} label="City" name="city" />
+													<InputField control={control} label="City" name="city" type="text" />
 												</Grid>
 												<Grid item xs={12} md={6}>
-													<InputField control={control} label="Zip" name="zip" />
+													<InputField control={control} label="Zip" name="zip" type="text" />
 												</Grid>
 												<Grid item xs={12} md={6}>
-													<InputField control={control} label="Country" name="country" />
+													<InputField control={control} label="Country" name="country" type="text" />
 												</Grid>
 												<Grid item xs={12} md={6}>
-													<InputField control={control} label="Phone" name="phone" />
+													<InputField control={control} label="Phone" name="phone" type="number" />
 												</Grid>
 											</Grid>
 											<Box
@@ -443,7 +468,7 @@ const AddressPage = () => {
 												gap: '10px'
 											}}
 										>
-											<IconButton>
+											<IconButton onClick={() => handleEdit(address)}>
 												<BorderColorIcon
 													sx={{
 														width: 'calc(16px + (18 - 16) * ((100vw - 320px) / (1920 - 320)))',

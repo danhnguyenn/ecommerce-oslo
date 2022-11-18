@@ -18,6 +18,8 @@ const useAddress = () => {
 
 	const addressListChecked = useSelector(addressSelector.selectAddressCheckedList);
 
+	const addressEdit = useSelector(addressSelector.selectAddressEdit);
+
 	const handleAddAddress = async data => {
 		try {
 			const actionResult = await dispatch(addressAsyncAction.addAddress(data));
@@ -53,7 +55,22 @@ const useAddress = () => {
 		[dispatch]
 	);
 
+	const handleUpdateAddress = async data => {
+		try {
+			const actionResult = await dispatch(addressAsyncAction.editAddress(data));
+			const { message } = await unwrapResult(actionResult);
+			success(message);
+		} catch ({ message }) {
+			error(message);
+		}
+	};
+
+	const handleEditAddress = address => {
+		dispatch(addressActions.setAddressEdit(address));
+	};
+
 	return {
+		addressEdit,
 		addressList,
 		isLoading,
 		addressChecked,
@@ -62,7 +79,9 @@ const useAddress = () => {
 		addressListChecked,
 		handleAddAddressChecked,
 		fetchAddressWithUser,
-		handleDeleteAddress
+		handleDeleteAddress,
+		handleEditAddress,
+		handleUpdateAddress
 	};
 };
 

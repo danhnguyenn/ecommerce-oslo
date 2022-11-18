@@ -8,7 +8,8 @@ const { createSlice, createAsyncThunk } = require('@reduxjs/toolkit');
 const initialState = {
 	addressListWithUser: [],
 	isLoading: false,
-	addressChecked: ''
+	addressChecked: '',
+	addressEdit: null
 };
 
 const getUserWithAddress = createAsyncThunk('user/getAddressWithUser', async (userId, { rejectWithValue }) => {
@@ -22,6 +23,14 @@ const getUserWithAddress = createAsyncThunk('user/getAddressWithUser', async (us
 const addAddress = createAsyncThunk('address/add', async (params, { rejectWithValue }) => {
 	try {
 		return await addressService.addressAdd(params);
+	} catch (error) {
+		return rejectWithValue(error);
+	}
+});
+
+const editAddress = createAsyncThunk('address/edit', async (params, { rejectWithValue }) => {
+	try {
+		return await addressService.addressEdit(params);
 	} catch (error) {
 		return rejectWithValue(error);
 	}
@@ -47,6 +56,10 @@ const addressSlice = createSlice({
 				state.addressListWithUser.findIndex(item => item.id === payload),
 				1
 			);
+		},
+		setAddressEdit: (state, { payload }) => {
+			console.log(payload);
+			state.addressEdit = payload;
 		}
 	},
 	extraReducers: {
@@ -61,7 +74,6 @@ const addressSlice = createSlice({
 		[addAddress.pending]: state => {
 			state.isLoading = true;
 		},
-
 		// Get address action
 		[getUserWithAddress.fulfilled]: (state, { payload }) => {
 			state.addressListWithUser = payload.user.addressList;
@@ -71,6 +83,16 @@ const addressSlice = createSlice({
 			state.isLoading = false;
 		},
 		[getUserWithAddress.pending]: state => {
+			state.isLoading = true;
+		},
+		// Edit address action
+		[editAddress.fulfilled]: (state, { payload }) => {
+			state.isLoading = false;
+		},
+		[editAddress.rejected]: state => {
+			state.isLoading = false;
+		},
+		[editAddress.pending]: state => {
 			state.isLoading = true;
 		},
 
@@ -88,7 +110,7 @@ const addressSlice = createSlice({
 
 export const addressActions = addressSlice.actions;
 
-export const addressAsyncAction = { addAddress, getUserWithAddress, deleteAddress };
+export const addressAsyncAction = { addAddress, getUserWithAddress, deleteAddress, editAddress };
 
 const persistConfig = {
 	keyPrefix: 'ecommerce',
