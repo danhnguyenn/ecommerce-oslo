@@ -139,10 +139,12 @@ const Header = () => {
 				</Container>
 			</Box>
 			<AppBar
-				position="static"
 				sx={{
 					background: '#fff',
-					boxShadow: 'none'
+					boxShadow: 'none',
+					position: 'sticky',
+					top: '0',
+					position: '-webkit-sticky'
 				}}
 			>
 				<Container maxWidth="xl">
