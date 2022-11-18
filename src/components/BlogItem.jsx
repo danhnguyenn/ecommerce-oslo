@@ -109,9 +109,9 @@ const BlogItem = ({ item }) => {
 						lineHeight: 'calc(20px + (23 - 20) * ((100vw - 320px) / (1920 - 320)))',
 						overflow: 'hidden',
 						textOverflow: 'ellipsis',
-						'-webkit-line-clamp': '2',
+						WebkitLineClamp: '2',
 						display: '-webkit-box',
-						'-webkit-box-orient': 'vertical'
+						WebkitBoxOrient: 'vertical'
 					}}
 				>
 					{item.desc}
