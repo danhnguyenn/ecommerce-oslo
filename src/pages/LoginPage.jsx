@@ -5,7 +5,7 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import EastIcon from '@mui/icons-material/East';
 import { Backdrop, Box, Button, CardMedia, CircularProgress, Container, Grid, styled, Typography } from '@mui/material';
 import { useForm } from 'react-hook-form';
-import { Link } from 'react-router-dom';
+import { Link, useLocation } from 'react-router-dom';
 import * as yup from 'yup';
 
 const MyTextLink = styled(Link)(({ theme }) => ({
@@ -65,8 +65,11 @@ const LoginPage = () => {
 		resolver: yupResolver(schema)
 	});
 
+	const location = useLocation();
+	const from = location.state?.from?.pathname;
+
 	const onSubmit = data => {
-		handleLogin(data);
+		handleLogin(data, from);
 		reset();
 	};
 

@@ -30,7 +30,7 @@ import {
 	Typography
 } from '@mui/material';
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 
 const MyTableCell = styled(TableCell)(({ theme }) => ({
 	fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))',
@@ -104,6 +104,8 @@ const MyButtonOutlined = styled(Button)(({ theme }) => ({
 }));
 
 const CartPage = () => {
+	const navigate = useNavigate();
+	const location = useLocation();
 	const {
 		cartsSelected,
 		handleDecreaseCart,
@@ -132,6 +134,10 @@ const CartPage = () => {
 		}
 		setSubtotal(total);
 	}, [cartsSelected]);
+
+	const handleNavigate = () => {
+		navigate(Route.LoginPage, { state: { from: location } });
+	};
 
 	const breadcrumb = {
 		title: 'Cart',
@@ -380,16 +386,16 @@ const CartPage = () => {
 												fontSize: 'calc(14px + (16 - 14) * ((100vw - 320px) / (1920 - 320)))'
 											}}
 										>
-											<Link
-												to={Route.LoginPage}
-												style={{
+											<Button
+												sx={{
 													textDecoration: 'none',
 													color: '#0f8fac',
 													fontWeight: 600
 												}}
+												onClick={handleNavigate}
 											>
 												Login
-											</Link>{' '}
+											</Button>{' '}
 											to see best coupon for you
 										</Box>
 									)}
