@@ -21,7 +21,7 @@ import {
 	TextField,
 	Typography
 } from '@mui/material';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import FilterByPrice from './Filters/FilterByPrice';
 import MyItem from './MyItem';
@@ -140,10 +140,10 @@ const ShopList = () => {
 	const [active, setActive] = useState('');
 	const [checkedBrands, setCheckedBrands] = useState([]);
 	const { categories, fetchCategoriesAll, isLoading } = useCategory();
-	const { handleFilterCategory, handleFilterBrand, handleFilterSearch, search } = useFilter();
-
+	const { handleFilterBrand, handleFilterSearch, search } = useFilter();
 	const { fetchBrandAll, isLoadingBrand, brands } = useBrand();
-
+	const [value, setValue] = useState('');
+	const typingTimeoutRef = useRef(null);
 	const handleCheckedFilterBrand = e => {
 		const { checked, value } = e.target;
 		let checkedList = [...checkedBrands];
@@ -166,6 +166,17 @@ const ShopList = () => {
 
 	const handleToggle = category => {
 		setActive(category._id);
+	};
+
+	const handleFilter = e => {
+		const search = e.target.value;
+		setValue(e.target.value);
+		if (typingTimeoutRef.current) {
+			clearTimeout(typingTimeoutRef.current);
+		}
+		typingTimeoutRef.current = setTimeout(() => {
+			handleFilterSearch(search);
+		}, 300);
 	};
 
 	return (
@@ -217,8 +228,8 @@ const ShopList = () => {
 						}}
 					>
 						<TextField
-							value={search}
-							onChange={e => handleFilterSearch(e.target.value)}
+							value={value}
+							onChange={handleFilter}
 							fullWidth
 							placeholder="Search here"
 							sx={{
@@ -611,6 +622,7 @@ const ShopList = () => {
 					}}
 				>
 					<Box
+						onSubmit={e => e.preventDefault()}
 						component="form"
 						sx={{
 							position: 'relative',
@@ -618,8 +630,8 @@ const ShopList = () => {
 						}}
 					>
 						<TextField
-							value={search}
-							onChange={e => handleFilterSearch(e.target.value)}
+							value={value}
+							onChange={handleFilter}
 							fullWidth
 							placeholder="Search here"
 							sx={{

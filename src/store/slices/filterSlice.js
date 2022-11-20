@@ -17,7 +17,9 @@ const filterSlice = createSlice({
 	initialState,
 	reducers: {
 		filterCategory: (state, { payload }) => {
-			state.filter.categories = payload;
+			if (payload) {
+				state.filter.categories = payload;
+			}
 		},
 		filterBrand: (state, { payload }) => {
 			state.filter.checkedBrands = payload;
