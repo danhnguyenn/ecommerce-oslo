@@ -58,7 +58,6 @@ const addressSlice = createSlice({
 			);
 		},
 		setAddressEdit: (state, { payload }) => {
-			console.log(payload);
 			state.addressEdit = payload;
 		}
 	},

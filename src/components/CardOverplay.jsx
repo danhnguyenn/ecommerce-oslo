@@ -18,7 +18,12 @@ const CardOverplay = ({ imageUrl, title, name }) => {
 					backgroundSize: 'cover',
 					backgroundPosition: 'center',
 					backgroundRepeat: 'no-repeat',
-					display: 'block'
+					display: 'block',
+					'&:before': {
+						paddingTop: '163%',
+						content: '""',
+						display: 'block'
+					}
 				}}
 			/>
 			<Box

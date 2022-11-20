@@ -18,8 +18,6 @@ const FilterByPrice = () => {
 		}));
 	};
 
-	console.log(values);
-
 	const handleSubmit = e => {
 		e.preventDefault();
 		const salePriceGte = parseInt(values.salePrice_gte);

@@ -47,7 +47,7 @@ const NewBadge = styled('span')(({ theme }) => ({
 const ProductCard = ({ product }) => {
 	const { warning } = useNotify();
 	const { user } = useAuth();
-	const { handleAddWishList, isLiked } = useWishList();
+	const { handleAddWishList } = useWishList();
 	const { handleAddToCart } = useCart();
 	const navigate = useNavigate();
 

@@ -5,7 +5,7 @@ const ProductSkeleton = ({ count }) => {
 	return (
 		<Grid container spacing={2} sx={{ marginTop: '15px' }}>
 			{Array.from(new Array(count)).map((_, index) => (
-				<Grid item key={index} xs={6} md={3} sm={3}>
+				<Grid item key={index} xs={6} sm={6} md={3} lg={3}>
 					<Box p={1}>
 						<Skeleton
 							variant="rectangular"
@@ -14,8 +14,8 @@ const ProductSkeleton = ({ count }) => {
 								height: {
 									xs: '200px',
 									sm: '200px',
-									md: '200px',
-									lg: '300px'
+									md: '250px',
+									lg: '280px'
 								}
 							}}
 						/>

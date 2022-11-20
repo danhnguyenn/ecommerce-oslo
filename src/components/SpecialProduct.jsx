@@ -15,24 +15,30 @@ const SpecialProduct = () => {
 			}}
 		>
 			<HeadingText heading={headingText} />
-			<Grid container spacing={1}>
+			<Grid container spacing={2}>
 				<Grid item xs={12} md={4} xl={5}>
-					<Grid item xs={12} sx={{ marginBottom: 2 }}>
+					<Grid item xs={12} sx={{ marginBottom: 2 }} lg={12}>
 						<CardOverplay
 							imageUrl="https://themes.pixelstrap.com/oslo/assets/images/fashion/category/1.jpg"
 							name="Best Brand"
 							title="man-dressed-shirt-lies"
 						/>
 					</Grid>
-					<Grid container spacing={2}>
-						<Grid item xs={6}>
+					<Grid
+						container
+						spacing={2}
+						sx={{
+							alignItems: 'stretch'
+						}}
+					>
+						<Grid item xs={6} md={6}>
 							<CardOverplay
 								imageUrl="https://themes.pixelstrap.com/oslo/assets/images/fashion/category/2.jpg"
 								name="All Collection"
 								title="Accessories"
 							/>
 						</Grid>
-						<Grid item xs={6}>
+						<Grid item xs={6} md={6}>
 							<CardOverplay
 								imageUrl="https://themes.pixelstrap.com/oslo/assets/images/fashion/category/3.jpg"
 								name="Top Brand"
@@ -50,14 +56,14 @@ const SpecialProduct = () => {
 				</Grid>
 				<Grid item xs={12} md={3} xl={2}>
 					<Grid container spacing={2}>
-						<Grid item xs={6} lg={12}>
+						<Grid item xs={6} md={12}>
 							<CardOverplay
 								imageUrl="https://themes.pixelstrap.com/oslo/assets/images/fashion/category/5.jpg"
 								name="Best Collection"
 								title="Woman Bag"
 							/>
 						</Grid>
-						<Grid item xs={6} lg={12}>
+						<Grid item xs={6} md={12}>
 							<CardOverplay
 								imageUrl="https://themes.pixelstrap.com/oslo/assets/images/fashion/category/6.jpg"
 								name="New Style"

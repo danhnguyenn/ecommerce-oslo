@@ -15,14 +15,12 @@ import {
 	FormControlLabel,
 	Grid,
 	List,
-	ListItem,
 	RadioGroup,
 	styled,
 	TextField,
 	Typography
 } from '@mui/material';
 import { useEffect, useRef, useState } from 'react';
-import { Link } from 'react-router-dom';
 import FilterByPrice from './Filters/FilterByPrice';
 import MyItem from './MyItem';
 import PopularCardMini from './PopularCardMini';
@@ -49,16 +47,6 @@ const MyHeading = styled(Typography)(({ theme }) => ({
 	display: 'inline-block',
 	marginTop: '-2px',
 	fontWeight: '500'
-}));
-
-const MyLink = styled(Link)(({ theme }) => ({
-	color: ' #767676',
-	fontSize: '15px',
-	fontWeight: 500,
-	display: 'flex',
-	justifyContent: 'space-between',
-	textDecoration: 'none',
-	width: '100%'
 }));
 
 const MyHeadingFour = styled(Typography)(({ theme }) => ({
@@ -103,35 +91,6 @@ const MyButtonCustom = styled(Button)(({ theme }) => ({
 	}
 }));
 
-const MyListItem = styled(ListItem)(({ theme }) => ({
-	display: 'flex',
-	justifyContent: 'space-between',
-	padding:
-		'calc(6px + (8 - 6) * ((100vw - 320px) / (1920 - 320))) calc(12px + (15 - 12) * ((100vw - 320px) / (1920 - 320)))',
-	backgroundColor: '#fafafa',
-	borderRadius: '8px',
-	'&:hover': {
-		backgroundColor: theme.palette.primary.light,
-		color: '#fff',
-		'& a': {
-			color: '#fff'
-		},
-		'& span': {
-			color: '#fff'
-		},
-		'& svg': {
-			color: '#fff'
-		}
-	},
-	'&.active': {
-		backgroundColor: theme.palette.primary.light,
-		color: '#fff',
-		'& a': {
-			color: '#fff'
-		}
-	}
-}));
-
 const ShopList = () => {
 	const [openDrawer, setOpenDrawer] = useState(false);
 	const toggleDrawer = () => {
@@ -166,10 +125,6 @@ const ShopList = () => {
 
 	const handleToggle = category => {
 		setActive(category._id);
-	};
-
-	const handleClose = () => {
-		setActive('');
 	};
 
 	const handleFilter = e => {
@@ -434,13 +389,7 @@ const ShopList = () => {
 										<TypographySkeleton count={categories.length} />
 									) : (
 										categories.map(item => (
-											<MyItem
-												key={item._id}
-												active={active}
-												onToggle={() => handleToggle(item)}
-												item={item}
-												onClose={handleClose}
-											/>
+											<MyItem key={item._id} active={active} onToggle={() => handleToggle(item)} item={item} />
 										))
 									)}
 								</List>

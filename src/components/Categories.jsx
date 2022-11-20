@@ -25,6 +25,10 @@ const Categories = () => {
 		setIsActive(categoryId);
 	};
 
+	const handleClickOutside = categoryId => {
+		setIsActive(!categoryId);
+	};
+
 	return (
 		<Box>
 			{isLoading ? (
@@ -59,7 +63,12 @@ const Categories = () => {
 				>
 					{categories.map(category => (
 						<SwiperSlide key={category._id}>
-							<Category category={category} onClick={() => handleToggle(category._id)} isActive={isActive} />
+							<Category
+								category={category}
+								onClick={() => handleToggle(category._id)}
+								isActive={isActive}
+								onClickOutside={() => handleClickOutside(category._id)}
+							/>
 						</SwiperSlide>
 					))}
 				</Swiper>

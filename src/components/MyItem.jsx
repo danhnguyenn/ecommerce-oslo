@@ -32,7 +32,7 @@ const MyListItem = styled(ListItem)(({ theme }) => ({
 	}
 }));
 
-const MyItem = ({ item, active, onToggle, onClose }) => {
+const MyItem = ({ item, active, onToggle }) => {
 	const { handleFilterCategory } = useFilter();
 
 	const handleToggleActive = item => {
@@ -40,14 +40,9 @@ const MyItem = ({ item, active, onToggle, onClose }) => {
 		onToggle();
 	};
 
-	const handleClose = () => {
-		onClose();
-	};
-
 	return (
 		<MyListItem
-			onClick={handleToggleActive}
-			onClose={handleClose}
+			onClick={() => handleToggleActive(item)}
 			disablePadding
 			sx={{
 				display: 'flex',
@@ -93,8 +88,7 @@ const MyItem = ({ item, active, onToggle, onClose }) => {
 MyItem.propTypes = {
 	item: PropTypes.object.isRequired,
 	active: PropTypes.string.isRequired,
-	onToggle: PropTypes.func.isRequired,
-	onClose: PropTypes.func.isRequired
+	onToggle: PropTypes.func.isRequired
 };
 
 export default MyItem;

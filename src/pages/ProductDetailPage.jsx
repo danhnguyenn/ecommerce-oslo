@@ -118,6 +118,7 @@ const ProductDetail = () => {
 
 	useEffect(() => {
 		fetchProductWithCategory(state.category);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [state.category]);
 
 	return (
@@ -437,7 +438,7 @@ const ProductDetail = () => {
 					</MyHeadingFour>
 					<Grid container spacing={2}>
 						{productsWithCategory.map(item => (
-							<Grid item xs={12} sm={3} md={3} key={item._id}>
+							<Grid item xs={6} sm={6} md={4} lg={3} key={item._id}>
 								<ProductCard product={item} />
 							</Grid>
 						))}

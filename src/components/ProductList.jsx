@@ -21,13 +21,11 @@ const ProductList = () => {
 	return (
 		<Box>
 			{isLoading ? (
-				<Grid container spacing={2} sx={{ marginTop: '15px' }}>
-					<ProductSkeleton count={pagination.limit} />
-				</Grid>
+				<ProductSkeleton count={pagination.limit} />
 			) : products.length ? (
 				<Grid container spacing={2} sx={{ marginTop: '15px' }}>
 					{products.map(product => (
-						<Grid item xs={6} md={3} sm={3} key={product._id}>
+						<Grid item xs={6} sm={6} md={3} lg={3} key={product._id}>
 							<ProductCard product={product} />
 						</Grid>
 					))}
