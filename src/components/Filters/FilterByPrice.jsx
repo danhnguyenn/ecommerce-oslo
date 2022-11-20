@@ -1,8 +1,10 @@
 import useFilter from '$hooks/useFilter';
+import useNotify from '$hooks/useNotify';
 import { Box, Button, TextField, Typography } from '@mui/material';
 import { useState } from 'react';
 
 const FilterByPrice = () => {
+	const { error } = useNotify();
 	const { handleFilterByPrice } = useFilter();
 	const [values, setValues] = useState({
 		salePrice_gte: 0,
@@ -16,8 +18,22 @@ const FilterByPrice = () => {
 		}));
 	};
 
-	const handleSubmit = () => {
-		handleFilterByPrice(values);
+	console.log(values);
+
+	const handleSubmit = e => {
+		e.preventDefault();
+		const salePriceGte = parseInt(values.salePrice_gte);
+		const salePriceLte = parseInt(values.salePrice_lte);
+
+		if (salePriceGte > salePriceLte) {
+			error('Invalid price, please min price smaller than max price');
+		} else {
+			const formValues = {
+				salePrice_gte: salePriceGte,
+				salePrice_lte: salePriceLte
+			};
+			handleFilterByPrice(formValues);
+		}
 	};
 	return (
 		<Box component="form">
@@ -62,6 +78,7 @@ const FilterByPrice = () => {
 						}}
 						value={values.salePrice_gte}
 						onChange={handleChange}
+						onKeyDown={evt => ['e', 'E', '+', '-'].includes(evt.key) && evt.preventDefault()}
 					/>
 				</Box>
 				<Typography
@@ -107,6 +124,7 @@ const FilterByPrice = () => {
 						}}
 						value={values.salePrice_lte}
 						onChange={handleChange}
+						onKeyDown={evt => ['e', 'E', '+', '-'].includes(evt.key) && evt.preventDefault()}
 					/>
 				</Box>
 			</Box>
