@@ -140,7 +140,7 @@ const ShopList = () => {
 	const [active, setActive] = useState('');
 	const [checkedBrands, setCheckedBrands] = useState([]);
 	const { categories, fetchCategoriesAll, isLoading } = useCategory();
-	const { handleFilterBrand, handleFilterSearch, search } = useFilter();
+	const { handleFilterBrand, handleFilterSearch } = useFilter();
 	const { fetchBrandAll, isLoadingBrand, brands } = useBrand();
 	const [value, setValue] = useState('');
 	const typingTimeoutRef = useRef(null);
@@ -166,6 +166,10 @@ const ShopList = () => {
 
 	const handleToggle = category => {
 		setActive(category._id);
+	};
+
+	const handleClose = () => {
+		setActive('');
 	};
 
 	const handleFilter = e => {
@@ -430,7 +434,13 @@ const ShopList = () => {
 										<TypographySkeleton count={categories.length} />
 									) : (
 										categories.map(item => (
-											<MyItem key={item._id} active={active} onToggle={() => handleToggle(item)} item={item} />
+											<MyItem
+												key={item._id}
+												active={active}
+												onToggle={() => handleToggle(item)}
+												item={item}
+												onClose={handleClose}
+											/>
 										))
 									)}
 								</List>

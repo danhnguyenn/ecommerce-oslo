@@ -1,5 +1,7 @@
+import Route from '$constants/Route';
 import EastIcon from '@mui/icons-material/East';
 import { Box, Button, Card, CardContent, CardMedia, Paper, styled, Typography } from '@mui/material';
+import { useNavigate } from 'react-router-dom';
 
 const MyButtonCustom = styled(Button)(({ theme }) => ({
 	color: '#fff',
@@ -23,6 +25,7 @@ const MyButtonCustom = styled(Button)(({ theme }) => ({
 	}
 }));
 const Slide = () => {
+	const navigate = useNavigate();
 	return (
 		<Paper
 			sx={{
@@ -185,6 +188,7 @@ const Slide = () => {
 
 						gap: { xs: '5px' }
 					}}
+					onClick={() => navigate(Route.ProductPage)}
 				>
 					Shop
 					<EastIcon sx={{ fontSize: { xs: '12px' } }} />
