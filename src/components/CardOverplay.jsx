@@ -15,9 +15,6 @@ const CardOverplay = ({ imageUrl, title, name }) => {
 				alt="Image"
 				sx={{
 					height: '100%',
-					backgroundSize: 'cover',
-					backgroundPosition: 'center',
-					backgroundRepeat: 'no-repeat',
 					display: 'block',
 					'&:before': {
 						paddingTop: '163%',

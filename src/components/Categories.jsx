@@ -19,14 +19,10 @@ const Categories = () => {
 	useEffect(() => {
 		fetchCategoriesAll();
 	}, [fetchCategoriesAll]);
-	const [isActive, setIsActive] = useState('');
+	const [isActive, setIsActive] = useState(false);
 
 	const handleToggle = categoryId => {
 		setIsActive(categoryId);
-	};
-
-	const handleClickOutside = categoryId => {
-		setIsActive(!categoryId);
 	};
 
 	return (
@@ -63,12 +59,7 @@ const Categories = () => {
 				>
 					{categories.map(category => (
 						<SwiperSlide key={category._id}>
-							<Category
-								category={category}
-								onClick={() => handleToggle(category._id)}
-								isActive={isActive}
-								onClickOutside={() => handleClickOutside(category._id)}
-							/>
+							<Category category={category} onClick={() => handleToggle(category._id)} isActive={isActive} />
 						</SwiperSlide>
 					))}
 				</Swiper>

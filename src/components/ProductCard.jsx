@@ -72,7 +72,7 @@ const ProductCard = ({ product }) => {
 						xs: '200px',
 						sm: '200px',
 						md: '250px',
-						lg: '280px'
+						lg: '300px'
 					},
 					cursor: 'pointer'
 				}}
@@ -83,7 +83,8 @@ const ProductCard = ({ product }) => {
 					image={product.imageUrl}
 					alt={product.title}
 					sx={{
-						height: '100%'
+						height: '100%',
+						maxWidth: ' 100%'
 					}}
 				/>
 			</Box>

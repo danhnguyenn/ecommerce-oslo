@@ -15,7 +15,7 @@ const ProductSkeleton = ({ count }) => {
 									xs: '200px',
 									sm: '200px',
 									md: '250px',
-									lg: '280px'
+									lg: '300px'
 								}
 							}}
 						/>
