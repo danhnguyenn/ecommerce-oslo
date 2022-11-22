@@ -149,22 +149,6 @@ const LoginPage = () => {
 							<MyButtonCustom type="submit">
 								Sign in <EastIcon />
 							</MyButtonCustom>
-							<MyTextLink to={Route.HomePage}>
-								<MyButtonCustom
-									sx={{
-										backgroundColor: '#fff',
-										border: '1px solid #0f8fac',
-										color: '#0f8fac',
-										marginTop: '1rem',
-										'&:hover': {
-											backgroundColor: '#0f8fac',
-											color: '#fff'
-										}
-									}}
-								>
-									Home <EastIcon />
-								</MyButtonCustom>
-							</MyTextLink>
 						</Box>
 						<Typography
 							component="span"

@@ -1,5 +1,6 @@
-import { createTheme, ThemeProvider } from '@mui/material';
-import { SnackbarProvider } from 'notistack';
+import CloseIcon from '@mui/icons-material/Close';
+import { createTheme, IconButton, ThemeProvider } from '@mui/material';
+import { SnackbarProvider, useSnackbar } from 'notistack';
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { Provider as StoreProvider } from 'react-redux';
@@ -25,6 +26,24 @@ const theme = createTheme({
 	}
 });
 
+// eslint-disable-next-line react/prop-types
+const SnackbarCloseButton = ({ snackbarKey }) => {
+	const { closeSnackbar } = useSnackbar();
+
+	return (
+		<IconButton onClick={() => closeSnackbar(snackbarKey)}>
+			<CloseIcon
+				sx={{
+					fontWeight: '500',
+					color: '#fff',
+					width: '16px',
+					height: '16px'
+				}}
+			/>
+		</IconButton>
+	);
+};
+
 root.render(
 	<React.StrictMode>
 		<ThemeProvider theme={theme}>
@@ -33,6 +52,7 @@ root.render(
 					vertical: 'top',
 					horizontal: 'right'
 				}}
+				action={snackbarKey => <SnackbarCloseButton snackbarKey={snackbarKey} />}
 			>
 				<BrowserRouter>
 					<StoreProvider store={store}>

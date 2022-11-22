@@ -4,7 +4,6 @@ import Route from '$constants/Route';
 import useAuth from '$hooks/useAuth';
 import useCart from '$hooks/useCart';
 import useCoupon from '$hooks/useCoupon';
-import useNotify from '$hooks/useNotify';
 import { Discount } from '@mui/icons-material';
 import DeleteIcon from '@mui/icons-material/Delete';
 import {
@@ -117,14 +116,14 @@ const CartPage = () => {
 	const { user } = useAuth();
 	const { handleChangePriceSale, priceSale, shipPrice } = useCoupon();
 	const [subTotal, setSubtotal] = useState();
-	const { warning } = useNotify();
+	const [cartQuantity, setCartQuantity] = useState(1);
 
 	const handleChange = e => {
 		handleChangePriceSale(e.target.value);
 	};
 
-	const handleCheckLogin = () => {
-		warning('Please login to checkout');
+	const handleNavigateLogin = () => {
+		navigate(Route.LoginPage);
 	};
 
 	useEffect(() => {
@@ -285,15 +284,8 @@ const CartPage = () => {
 															}}
 														>
 															<Button onClick={() => handleDecreaseCart(cartItem)}>-</Button>
-															<Button
-																disabled
-																sx={{
-																	color: '#0f8fac'
-																}}
-															>
-																{cartItem.cartQuantity}
-															</Button>
-															<Button onClick={() => handleIncreaseCart(cartItem, cartItem.cartQuantity)}>+</Button>
+															<Button disabled>{cartItem.cartQuantity}</Button>
+															<Button onClick={() => handleIncreaseCart(cartItem)}>+</Button>
 														</ButtonGroup>
 													</MyTableCell>
 													<MyTableCell>
@@ -540,7 +532,7 @@ const CartPage = () => {
 												<MyButtonCustom>Checkout</MyButtonCustom>
 											</Link>
 										) : (
-											<MyButtonCustom onClick={handleCheckLogin}>Checkout</MyButtonCustom>
+											<MyButtonCustom onClick={handleNavigateLogin}>Checkout</MyButtonCustom>
 										)}
 
 										<Link

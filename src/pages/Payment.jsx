@@ -293,7 +293,6 @@ const Payment = () => {
 								<Box>
 									<Button
 										variant="outlined"
-										onClick={handleClickOpen}
 										sx={{
 											padding: '10px;',
 											border: '#0f8fac solid 1px',

@@ -452,7 +452,7 @@ const OrderSuccess = () => {
 										</Box>
 									</MyListItem>
 									<MyListItem>
-										<Box>
+										{/* <Box>
 											<Box
 												component="span"
 												sx={{
@@ -465,7 +465,7 @@ const OrderSuccess = () => {
 											<Box component="strong" sx={{ display: 'block' }}>
 												June 22, 2022
 											</Box>
-										</Box>
+										</Box> */}
 										<Link
 											to={Route.UserDashboardPage}
 											style={{

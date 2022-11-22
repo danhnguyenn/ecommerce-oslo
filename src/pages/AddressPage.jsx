@@ -67,7 +67,6 @@ const MyButtonClose = styled(Button)(({ theme }) => ({
 	display: 'flex',
 	alignItems: 'center',
 	padding: '10px 20px',
-	borderRadius: '100px',
 	width: '100%',
 	gap: ' 13px',
 	justifyContent: 'center',
@@ -228,15 +227,18 @@ const AddressPage = () => {
 
 	const handleClickOpen = () => {
 		setOpen(true);
+		handleEditAddress(null);
 	};
 	const handleClose = () => {
 		setOpen(false);
+		handleEditAddress(null);
 	};
 
 	useEffect(() => {
 		if (user) {
 			fetchAddressWithUser(user._id);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, addressEdit]);
 
 	const { control, handleSubmit, reset, setValue } = useForm({
@@ -291,6 +293,14 @@ const AddressPage = () => {
 			setValue('zip', addressEdit.zip);
 			setValue('country', addressEdit.country);
 			setValue('phone', addressEdit.phone);
+		} else {
+			setValue('fullName', '');
+			setValue('address', '');
+			setValue('apartment', '');
+			setValue('city', '');
+			setValue('zip', '');
+			setValue('country', '');
+			setValue('phone', ' addressEdit.phone');
 		}
 	}, [addressEdit, setValue]);
 
