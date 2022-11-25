@@ -1,4 +1,4 @@
-import { Box, Container, Grid } from '@mui/material';
+import { Box, Container } from '@mui/material';
 import SwiperCore, { Navigation, Pagination, Scrollbar, Zoom } from 'swiper';
 import 'swiper/css';
 import 'swiper/css/navigation';
@@ -30,48 +30,48 @@ const UserReview = () => {
 					slidesPerView={1}
 					pagination={{ clickable: true }}
 					loop
+					breakpoints={{
+						480: {
+							slidesPerView: 1,
+							spaceBetween: 10
+						},
+						640: {
+							slidesPerView: 2,
+							spaceBetween: 10
+						},
+						768: {
+							slidesPerView: 2,
+							spaceBetween: 10
+						},
+						1024: {
+							slidesPerView: 2,
+							spaceBetween: 5
+						}
+					}}
 					params={{
 						zoom: {
 							enabled: true
 						}
 					}}
 				>
-					<Grid container spacing={2}>
-						<Grid item xs={12} md={6}>
-							<SwiperSlide>
-								<CommentBox />
-							</SwiperSlide>
-						</Grid>
-						<Grid item xs={12} md={6}>
-							<SwiperSlide>
-								<CommentBox />
-							</SwiperSlide>
-						</Grid>
-					</Grid>
-					<Grid container spacing={2}>
-						<Grid item xs={12} md={6}>
-							<SwiperSlide>
-								<CommentBox />
-							</SwiperSlide>
-						</Grid>
-						<Grid item xs={12} md={6}>
-							<SwiperSlide>
-								<CommentBox />
-							</SwiperSlide>
-						</Grid>
-					</Grid>
-					<Grid container spacing={2}>
-						<Grid item xs={12} md={6}>
-							<SwiperSlide>
-								<CommentBox />
-							</SwiperSlide>
-						</Grid>
-						<Grid item xs={12} md={6}>
-							<SwiperSlide>
-								<CommentBox />
-							</SwiperSlide>
-						</Grid>
-					</Grid>
+					<SwiperSlide>
+						<CommentBox />
+					</SwiperSlide>
+					<SwiperSlide>
+						<CommentBox />
+					</SwiperSlide>
+					<SwiperSlide>
+						<CommentBox />
+					</SwiperSlide>
+					<SwiperSlide>
+						<CommentBox />
+					</SwiperSlide>
+					<SwiperSlide>
+						<CommentBox />
+					</SwiperSlide>
+					<SwiperSlide>
+						<CommentBox />
+					</SwiperSlide>
 				</Swiper>
 			</Container>
 		</Box>
