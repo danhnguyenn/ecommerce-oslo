@@ -33,7 +33,6 @@ const useOrder = () => {
 		try {
 			const actionResult = await dispatch(orderAsyncActions.fetchOrder(userId));
 			const { message } = await unwrapResult(actionResult);
-			success(message);
 		} catch ({ message }) {
 			error(message);
 		}

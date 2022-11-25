@@ -94,6 +94,6 @@ export default Category;
 
 Category.propTypes = {
 	category: PropTypes.object.isRequired,
-	isActive: PropTypes.string.isRequired,
+	isActive: PropTypes.bool.isRequired,
 	onClick: PropTypes.func.isRequired
 };
