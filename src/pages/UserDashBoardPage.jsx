@@ -269,7 +269,7 @@ const UserDashboardPage = () => {
 	} = useAddress();
 	const { fetchOrderDetail, orderList } = useOrder();
 	const [valueTab, setValueTab] = useState(1);
-	const [selected, setSelected] = useState(addressList ? addressList[0]._id : '');
+	const [selected, setSelected] = useState(addressList ? addressList[0]?._id : []);
 	const [open, setOpen] = useState(false);
 	const [openDrawer, setOpenDrawer] = useState(false);
 
@@ -299,9 +299,7 @@ const UserDashboardPage = () => {
 	};
 
 	useEffect(() => {
-		if (user) {
-			fetchOrderDetail(user._id);
-		}
+		fetchOrderDetail(user._id);
 	}, [user]);
 
 	const { control, handleSubmit, reset, setValue } = useForm({
@@ -318,9 +316,7 @@ const UserDashboardPage = () => {
 	});
 
 	useEffect(() => {
-		if (user) {
-			fetchAddressWithUser(user._id);
-		}
+		fetchAddressWithUser(user._id);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, addressEdit]);
 

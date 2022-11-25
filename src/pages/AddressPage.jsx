@@ -221,7 +221,7 @@ const AddressPage = () => {
 
 	const { warning } = useNotify();
 
-	const [selected, setSelected] = useState(addressList ? addressList[0]._id : '');
+	const [selected, setSelected] = useState(addressList ? addressList[0]?._id : []);
 
 	const [open, setOpen] = useState(false);
 
@@ -235,9 +235,7 @@ const AddressPage = () => {
 	};
 
 	useEffect(() => {
-		if (user) {
-			fetchAddressWithUser(user._id);
-		}
+		fetchAddressWithUser(user._id);
 		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [user, addressEdit]);
 
