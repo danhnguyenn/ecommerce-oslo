@@ -1,5 +1,5 @@
 # Initial Project
-Step 1: Tạo file .env với nội dung REACT_APP_BASE_URL=https://ecommerce-clothes-api.vercel.app/api/
+Step 1: Tạo file .env với nội dung REACT_APP_BASE_URL=https://ecommerce-clothes-api.vercel.app/api/ <br>
 Step 2: Clone về máy sau đó gõ lệnh yarn <br>
 Step 3: yarn start để chạy react-app
 
