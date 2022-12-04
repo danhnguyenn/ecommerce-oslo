@@ -117,10 +117,12 @@ const ShopList = () => {
 
 	useEffect(() => {
 		fetchBrandAll();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	useEffect(() => {
 		fetchCategoriesAll();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, []);
 
 	const handleToggle = category => {
@@ -128,8 +130,8 @@ const ShopList = () => {
 	};
 
 	const handleFilter = e => {
-		const search = e.target.value;
-		setValue(e.target.value);
+		const search = e.target.value.trim();
+		setValue(e.target.value.trim());
 		if (typingTimeoutRef.current) {
 			clearTimeout(typingTimeoutRef.current);
 		}

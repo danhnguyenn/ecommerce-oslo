@@ -84,7 +84,7 @@ const ProductCard = ({ product }) => {
 					alt={product.title}
 					sx={{
 						height: '100%',
-						maxWidth: ' 100%'
+						maxWidth: '100%'
 					}}
 				/>
 			</Box>

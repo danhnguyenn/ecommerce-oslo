@@ -16,7 +16,8 @@ const ProductList = () => {
 
 	useEffect(() => {
 		fetchProductAll();
-	}, [fetchProductAll, pagination.page, filter]);
+		// eslint-disable-next-line react-hooks/exhaustive-deps
+	}, [pagination.page, filter]);
 
 	return (
 		<Box>

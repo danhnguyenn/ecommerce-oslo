@@ -62,7 +62,9 @@ const authSlice = createSlice({
 		[register.pending]: state => {
 			state.isLoading = true;
 		},
-		[register.rejected]: () => {},
+		[register.rejected]: state => {
+			state.isLoading = false;
+		},
 
 		// logout
 		[logout.fulfilled]: state => {

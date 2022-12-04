@@ -7,9 +7,7 @@ const ProductSkeleton = ({ count }) => {
 			{Array.from(new Array(count)).map((_, index) => (
 				<Grid item key={index} xs={6} sm={6} md={3} lg={3}>
 					<Box p={1}>
-						<Skeleton
-							variant="rectangular"
-							width="100%"
+						<Box
 							sx={{
 								height: {
 									xs: '200px',
@@ -18,7 +16,9 @@ const ProductSkeleton = ({ count }) => {
 									lg: '300px'
 								}
 							}}
-						/>
+						>
+							<Skeleton variant="rectangular" width="100%" height="100%" sx={{ objectFit: 'cover' }} />
+						</Box>
 						<Skeleton />
 						<Skeleton />
 						<Skeleton width="60%" />

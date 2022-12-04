@@ -2,7 +2,6 @@ import InputField from '$components/InputFields/InputField';
 import PasswordField from '$components/InputFields/PasswordField';
 import Route from '$constants/Route';
 import useAuth from '$hooks/useAuth';
-import useOrder from '$hooks/useOrder';
 import { yupResolver } from '@hookform/resolvers/yup';
 import EastIcon from '@mui/icons-material/East';
 import { Backdrop, Box, Button, CardMedia, CircularProgress, Container, Grid, styled, Typography } from '@mui/material';
@@ -65,7 +64,6 @@ const schema = yup
 
 const RegisterPage = () => {
 	const { handleRegister, isLoading } = useAuth();
-	const { orderList, fetchOrderDetail } = useOrder();
 	const { control, handleSubmit, reset } = useForm({
 		defaultValues: {
 			fullName: '',
@@ -156,16 +154,16 @@ const RegisterPage = () => {
 						<Box component="form" onSubmit={handleSubmit(onSubmit)}>
 							<Grid container spacing={1}>
 								<Grid item xs={12} md={12}>
-									<InputField control={control} label="Full Name" name="fullName" />
+									<InputField control={control} label="Full Name" name="fullName" type="text" />
 								</Grid>
 								<Grid item xs={12} md={12}>
-									<InputField control={control} name="email" label="Email" />
+									<InputField control={control} name="email" label="Email" type="email" />
 								</Grid>
 								<Grid item xs={12} md={12}>
-									<PasswordField control={control} name="password" label="Password" />
+									<PasswordField control={control} name="password" label="Password" type="password" />
 								</Grid>
 								<Grid item xs={12} md={12}>
-									<PasswordField control={control} name="password_retype" label="Password Retype" />
+									<PasswordField control={control} name="password_retype" label="Password Retype" type="password" />
 								</Grid>
 							</Grid>
 							<InputField control={control} type="number" label="Phone" name="phone" />
