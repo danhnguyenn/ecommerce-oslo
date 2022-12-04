@@ -298,7 +298,7 @@ const AddressPage = () => {
 			setValue('city', '');
 			setValue('zip', '');
 			setValue('country', '');
-			setValue('phone', ' addressEdit.phone');
+			setValue('phone', 0);
 		}
 	}, [addressEdit, setValue]);
 
