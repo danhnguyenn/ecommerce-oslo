@@ -11,7 +11,7 @@ https://ecommerce-oslo.vercel.app/
 
 Mô tả chức năng
 + Login, register, logout with JWT
-+ Filter product:  sort title use debounce,sort by price, sort by categories, sort by brand
++ Filter product:  search title use debounce,sort by price, sort by categories, sort by brand
 + Like Product
 + Use custom hooks for reuse
 + Use React Router Dom to switch between pages
