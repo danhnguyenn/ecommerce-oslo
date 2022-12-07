@@ -6,6 +6,8 @@ Step 3: yarn start để chạy react-app
 #Lưu ý: Project đã deploy mời mọi người trải nghiệm
 https://ecommerce-oslo.vercel.app/
 
+#Video Demo: https://www.youtube.com/watch?v=Vk1SDO0-IHE&t=314s
+
 
 Mô tả chức năng
 + Login, register, logout with JWT
