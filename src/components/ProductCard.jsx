@@ -3,7 +3,6 @@ import useAuth from '$hooks/useAuth';
 import useCart from '$hooks/useCart';
 import useNotify from '$hooks/useNotify';
 import useWishList from '$hooks/useWishList';
-import CompareArrowsIcon from '@mui/icons-material/CompareArrows';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import RemoveRedEyeIcon from '@mui/icons-material/RemoveRedEye';
 import StarIcon from '@mui/icons-material/Star';
@@ -148,7 +147,7 @@ const ProductCard = ({ product }) => {
 					</Box>
 				)}
 
-				<Box
+				{/* <Box
 					sx={{
 						borderRadius: '50%',
 						backgroundColor: '#fff'
@@ -166,7 +165,7 @@ const ProductCard = ({ product }) => {
 							<CompareArrowsIcon sx={{ fontSize: '18px' }} />
 						</IconButton>
 					</Tooltip>
-				</Box>
+				</Box> */}
 				<Box
 					sx={{
 						borderRadius: '50%',
